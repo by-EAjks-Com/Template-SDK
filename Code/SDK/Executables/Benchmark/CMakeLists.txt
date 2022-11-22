@@ -39,7 +39,7 @@ TARGET_LINK_LIBRARIES(
         PRIVATE CLI11::CLI11
         PRIVATE spdlog::spdlog_header_only
         PRIVATE StaticTemplateCPULibrary
-        PRIVATE StaticTemplateGPULibrary)
+        PRIVATE SharedTemplateGPULibrary)
 
 SET_TARGET_PROPERTIES(
     Benchmark

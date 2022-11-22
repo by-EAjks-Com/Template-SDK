@@ -14,6 +14,8 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+CMAKE_MINIMUM_REQUIRED(VERSION 3.22.1)
+
 STRING(TIMESTAMP TemplateSDK_VERSION "1.0.0.%s" UTC)
 
 PROJECT(TemplateSDK VERSION ${TemplateSDK_VERSION} LANGUAGES NONE)
