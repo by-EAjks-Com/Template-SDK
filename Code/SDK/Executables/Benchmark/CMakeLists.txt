@@ -14,7 +14,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-PROJECT(Benchmark VERSION ${TemplateSDK_VERSION} LANGUAGES CXX)
+PROJECT(Benchmark VERSION ${TemplateSDK_VERSION} LANGUAGES CXX CUDA)
 
 CONFIGURE_FILE(
     ${PROJECT_SOURCE_DIR}/src/Version.h.in
@@ -39,7 +39,7 @@ TARGET_LINK_LIBRARIES(
         PRIVATE CLI11::CLI11
         PRIVATE spdlog::spdlog_header_only
         PRIVATE StaticTemplateCPULibrary
-        PRIVATE SharedTemplateGPULibrary)
+        PRIVATE StaticTemplateGPULibrary)
 
 SET_TARGET_PROPERTIES(
     Benchmark
