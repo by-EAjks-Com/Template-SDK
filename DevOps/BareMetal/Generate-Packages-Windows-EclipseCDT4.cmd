@@ -19,15 +19,15 @@ rmdir /s/q Generate-Packages-Windows-EclipseCDT4
 mkdir      Generate-Packages-Windows-EclipseCDT4
 pushd      Generate-Packages-Windows-EclipseCDT4
 
-call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
+call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
 
 cmake ^
     -G "Eclipse CDT4 - NMake Makefiles" ^
     -D CMAKE_ECLIPSE_VERSION=4.24 ^
     -D CMAKE_ECLIPSE_GENERATE_SOURCE_PROJECT=TRUE ^
-    -D CMAKE_C_COMPILER=cl ^
-    -D CMAKE_CXX_COMPILER=cl ^
-    -D CMAKE_BUILD_TYPE=Debug ^
+    -D CMAKE_C_COMPILER=icx ^
+    -D CMAKE_CXX_COMPILER=icx ^
+    -D CMAKE_BUILD_TYPE=Release ^
     -D CMAKE_TOOLCHAIN_FILE=C:\Tools\VCPKG\scripts\buildsystems\vcpkg.cmake ^
     -D PYBIND11_FINDPYTHON=ON ^
     -D EAJKS_BUILD_FDK=OFF ^

@@ -19,12 +19,10 @@ rm    -rf Generate-Packages-Linux-CommandLine
 mkdir -p  Generate-Packages-Linux-CommandLine
 pushd     Generate-Packages-Linux-CommandLine
 
-. /opt/intel/oneapi/setvars.sh
-
 cmake \
     -G "Unix Makefiles" \
-    -D CMAKE_C_COMPILER=icx \
-    -D CMAKE_CXX_COMPILER=icpx \
+    -D CMAKE_C_COMPILER=gcc \
+    -D CMAKE_CXX_COMPILER=g++ \
     -D CMAKE_BUILD_TYPE=Release \
     -D PYBIND11_FINDPYTHON=ON \
     -D EAJKS_BUILD_FDK=OFF \
