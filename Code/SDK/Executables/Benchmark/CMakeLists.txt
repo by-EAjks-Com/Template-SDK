@@ -14,7 +14,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-PROJECT(Benchmark VERSION ${TemplateSDK_VERSION} LANGUAGES CXX CUDA)
+PROJECT(Benchmark VERSION ${TemplateSDK_VERSION} LANGUAGES CXX)
 
 CONFIGURE_FILE(
     ${PROJECT_SOURCE_DIR}/src/Version.h.in
@@ -38,13 +38,21 @@ TARGET_LINK_LIBRARIES(
     Benchmark
         PRIVATE CLI11::CLI11
         PRIVATE spdlog::spdlog_header_only
-        PRIVATE StaticTemplateCPULibrary
-        PRIVATE StaticTemplateGPULibrary)
+        PRIVATE SharedTemplateCPULibrary
+        PRIVATE SharedTemplateGPULibrary)
 
 SET_TARGET_PROPERTIES(
     Benchmark
         PROPERTIES
             OUTPUT_NAME "Benchmark")
+
+IF(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    ADD_CUSTOM_COMMAND(
+        TARGET Benchmark
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:Benchmark> $<TARGET_FILE_DIR:Benchmark>
+        COMMAND_EXPAND_LISTS)
+ENDIF()
 
 INSTALL(
     TARGETS Benchmark

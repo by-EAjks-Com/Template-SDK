@@ -129,7 +129,7 @@ INSTALL(
         DESTINATION lib/shared
         COMPONENT runtime
     RUNTIME
-        DESTINATION lib/shared
+        DESTINATION bin
         COMPONENT runtime)
 
 IF(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")

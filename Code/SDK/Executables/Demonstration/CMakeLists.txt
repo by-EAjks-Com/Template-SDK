@@ -46,6 +46,14 @@ SET_TARGET_PROPERTIES(
         PROPERTIES
             OUTPUT_NAME "Demonstration")
 
+IF(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    ADD_CUSTOM_COMMAND(
+        TARGET Demonstration
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:Demonstration> $<TARGET_FILE_DIR:Demonstration>
+        COMMAND_EXPAND_LISTS)
+ENDIF()
+
 INSTALL(
     TARGETS Demonstration
     RUNTIME
