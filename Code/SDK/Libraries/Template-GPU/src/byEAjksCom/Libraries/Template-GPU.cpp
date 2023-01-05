@@ -1,5 +1,5 @@
 //  Template SDK, by-EAjks.Com FPGA/C++ Development Best Practices
-//  Copyright (C) 2022 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
+//  Copyright (C) 2022-2023 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
