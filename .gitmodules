@@ -1,9 +1,9 @@
-[submodule "Code/SDK/Dependencies/CLI11"]
-	path = Code/SDK/Dependencies/CLI11
-	url = https://github.com/CLIUtils/CLI11.git
-[submodule "Code/SDK/Dependencies/PyBind11"]
-	path = Code/SDK/Dependencies/PyBind11
-	url = https://github.com/pybind/pybind11.git
-[submodule "Code/SDK/Dependencies/SpdLog"]
-	path = Code/SDK/Dependencies/SpdLog
-	url = https://github.com/gabime/spdlog.git
+[submodule "Code/Dependencies/CLI11"]
+	path = Code/Dependencies/CLI11
+	url = https://github.com/by-EAjks-Com/CLI11.git
+[submodule "Code/Dependencies/PyBind11"]
+	path = Code/Dependencies/PyBind11
+	url = https://github.com/by-EAjks-Com/PyBind11.git
+[submodule "Code/Dependencies/SpdLog"]
+	path = Code/Dependencies/SpdLog
+	url = https://github.com/by-EAjks-Com/SpdLog.git
