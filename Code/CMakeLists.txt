@@ -1,5 +1,5 @@
 #   Template SDK, by-EAjks.Com FPGA/C++ Development Best Practices
-#   Copyright (C) 2022-2023 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
+#   Copyright (c) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -14,34 +14,23 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.22.1)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.29.3)
 
 STRING(TIMESTAMP TemplateSDK_VERSION "1.0.0.%s" UTC)
 
 PROJECT(TemplateSDK VERSION ${TemplateSDK_VERSION} LANGUAGES NONE)
 
 IF(NOT DEFINED CMAKE_CXX_STANDARD)
-    SET(CMAKE_CXX_STANDARD 20)
+    SET(CMAKE_CXX_STANDARD 23)
     SET(CMAKE_CXX_STANDARD_REQUIRED ON)
     SET(CMAKE_CXX_EXTENSIONS ON)
 ENDIF()
 
 IF(NOT DEFINED CMAKE_CUDA_STANDARD)
-    SET(CMAKE_CUDA_STANDARD 17)
+    SET(CMAKE_CUDA_STANDARD 20)
     SET(CMAKE_CUDA_STANDARD_REQUIRED ON)
     SET(CMAKE_CUDA_EXTENSIONS ON)
-    SET(CMAKE_CUDA_ARCHITECTURES 50)
-ENDIF()
-
-OPTION(EAJKS_BUILD_FDK "Build the FDK" OFF)
-OPTION(EAJKS_BUILD_SDK "Build the SDK" OFF)
-
-IF(${EAJKS_BUILD_FDK})
-    ADD_SUBDIRECTORY(FDK)
-ENDIF()
-
-IF(${EAJKS_BUILD_SDK})
-    ADD_SUBDIRECTORY(SDK)
+    SET(CMAKE_CUDA_ARCHITECTURES 90)
 ENDIF()
 
 INSTALL(
@@ -52,6 +41,62 @@ INSTALL(
     DESTINATION .
     COMPONENT runtime)
 
+ADD_SUBDIRECTORY(Dependencies)
+ADD_SUBDIRECTORY(Libraries)
+ADD_SUBDIRECTORY(Executables)
+ADD_SUBDIRECTORY(Bindings)
+
+IF(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
+
+    SET(CMAKE_INSTALL_PREFIX /opt/by-EAjks.Com/${PROJECT_NAME})
+
+    CONFIGURE_FILE(
+        ${PROJECT_SOURCE_DIR}/Miscellaneous/Linux/DEBIAN/conffiles.in
+        ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/conffiles
+        @ONLY)
+
+    CONFIGURE_FILE(
+        ${PROJECT_SOURCE_DIR}/Miscellaneous/Linux/DEBIAN/preinst.in
+        ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/preinst
+        @ONLY)
+
+    CONFIGURE_FILE(
+        ${PROJECT_SOURCE_DIR}/Miscellaneous/Linux/DEBIAN/postinst.in
+        ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/postinst
+        @ONLY)
+
+    CONFIGURE_FILE(
+        ${PROJECT_SOURCE_DIR}/Miscellaneous/Linux/DEBIAN/prerm.in
+        ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/prerm
+        @ONLY)
+
+    CONFIGURE_FILE(
+        ${PROJECT_SOURCE_DIR}/Miscellaneous/Linux/DEBIAN/postrm.in
+        ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/postrm
+        @ONLY)
+
+    CONFIGURE_FILE(
+        ${PROJECT_SOURCE_DIR}/Miscellaneous/Linux/etc/ld.so.conf.d/${PROJECT_NAME}.conf.in
+        ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/etc/ld.so.conf.d/${PROJECT_NAME}.conf
+        @ONLY)
+
+    INSTALL(
+        FILES ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/etc/ld.so.conf.d/${PROJECT_NAME}.conf
+        DESTINATION /etc/ld.so.conf.d
+        COMPONENT runtime)
+
+    CONFIGURE_FILE(
+        ${PROJECT_SOURCE_DIR}/Miscellaneous/Linux/usr/local/lib/python3.11/dist-packages/${PROJECT_NAME}.pth.in
+        ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/usr/local/lib/python3.11/dist-packages/${PROJECT_NAME}.pth
+        @ONLY)
+
+    INSTALL(
+        FILES ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/usr/local/lib/python3.11/dist-packages/${PROJECT_NAME}.pth
+        DESTINATION /usr/local/lib/python3.11/dist-packages
+        COMPONENT runtime)
+
+ENDIF()
+
 INCLUDE(InstallRequiredSystemLibraries)
 
 SET(CPACK_PACKAGE_NAME ${PROJECT_NAME})
@@ -61,9 +106,9 @@ SET(CPACK_PACKAGE_VENDOR "by-EAjks.Com")
 SET(CPACK_PACKAGE_CONTACT "Andrea and Eric DELAGE <Contact@by-EAjks.Com>")
 SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}_${CPACK_PACKAGE_VERSION}")
 
-IF(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+IF(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
 
-    SET(CPACK_PACKAGING_INSTALL_PREFIX "/opt/by-EAjks.Com/${PROJECT_NAME}")
+    SET(CPACK_SET_DESTDIR ON)
 
     SET(LINUX_DISTRIBUTION_ID "unknown")
 
@@ -80,20 +125,20 @@ IF(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     IF(${LINUX_DISTRIBUTION_ID} MATCHES "debian|ubuntu")
         SET(CPACK_GENERATOR "DEB")
         SET(CPACK_DEB_PACKAGE_ARCHITECTURE "amd64")
-        SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libpython3.10")
+        SET(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/conffiles;${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/preinst;${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/postinst;${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/prerm;${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/postrm")
+        SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libpython3.11")
     ENDIF()
 
     IF(${LINUX_DISTRIBUTION_ID} MATCHES "centos|redhat")
         SET(CPACK_GENERATOR "RPM")
         SET(CPACK_RPM_PACKAGE_ARCHITECTURE "x86_64")
-        SET(CPACK_RPM_PACKAGE_REQUIRES "libpython3.10")
     ENDIF()
 
     SET(CPACK_COMPONENTS_GROUPING ALL_COMPONENTS_IN_ONE)
 
 ENDIF()
 
-IF(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+IF(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows")
 
     SET(CPACK_GENERATOR "ZIP")
 

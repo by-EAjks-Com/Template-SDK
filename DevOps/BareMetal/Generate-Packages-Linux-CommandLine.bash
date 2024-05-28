@@ -1,6 +1,6 @@
 #!/bin/bash
 #   Template SDK, by-EAjks.Com FPGA/C++ Development Best Practices
-#   Copyright (C) 2022-2023 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
+#   Copyright (c) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -25,8 +25,6 @@ cmake \
     -D CMAKE_CXX_COMPILER=g++ \
     -D CMAKE_BUILD_TYPE=Release \
     -D PYBIND11_FINDPYTHON=ON \
-    -D EAJKS_BUILD_FDK=OFF \
-    -D EAJKS_BUILD_SDK=ON \
     ../../../Code
 
 make package
