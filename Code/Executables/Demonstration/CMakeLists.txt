@@ -50,12 +50,14 @@ SET_TARGET_PROPERTIES(
         PROPERTIES
             OUTPUT_NAME ${PROJECT_NAME})
 
-IF(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+IF(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows")
+
     ADD_CUSTOM_COMMAND(
         TARGET DemonstrationExecutable
         POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:DemonstrationExecutable> $<TARGET_FILE_DIR:DemonstrationExecutable>
         COMMAND_EXPAND_LISTS)
+
 ENDIF()
 
 INSTALL(

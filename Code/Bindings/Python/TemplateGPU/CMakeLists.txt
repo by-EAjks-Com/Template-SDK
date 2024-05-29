@@ -14,55 +14,50 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-PROJECT(Benchmark VERSION ${TemplateSDK_VERSION} LANGUAGES CXX)
+PROJECT(TemplateGPU VERSION ${TemplateSDK_VERSION} LANGUAGES CXX)
 
-CONFIGURE_FILE(
-    ${PROJECT_SOURCE_DIR}/src/Version.h.in
-    ${PROJECT_BINARY_DIR}/src/Version.h
-    @ONLY)
+FILE(GLOB_RECURSE TemplateGPUPythonBindingHeaders ${PROJECT_SOURCE_DIR}/include/*.h)
+FILE(GLOB_RECURSE TemplateGPUPythonBindingSources ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
-FILE(GLOB_RECURSE BenchmarkExecutableHeaders ${PROJECT_SOURCE_DIR}/src/*.h)
-FILE(GLOB_RECURSE BenchmarkExecutableSources ${PROJECT_SOURCE_DIR}/src/*.cpp)
+# Let's define the Python binding of the C++ shared library.
 
-ADD_EXECUTABLE(
-    BenchmarkExecutable
-        ${BenchmarkExecutableHeaders}
-        ${BenchmarkExecutableSources})
+PYBIND11_ADD_MODULE(
+    TemplateGPUPythonBinding
+        MODULE
+            ${TemplateGPUPythonBindingHeaders}
+            ${TemplateGPUPythonBindingSources})
 
-TARGET_INCLUDE_DIRECTORIES(
-    BenchmarkExecutable
-        PRIVATE ${PROJECT_BINARY_DIR}/src
-        PRIVATE ${PROJECT_SOURCE_DIR}/src)
+TARGET_COMPILE_DEFINITIONS(
+    TemplateGPUPythonBinding
+        PRIVATE $<$<CONFIG:Debug>:SPDLOG_DEBUG_ON>
+        PRIVATE SPDLOG_TRACE_ON)
 
 TARGET_COMPILE_OPTIONS(
-    BenchmarkExecutable
+    TemplateGPUPythonBinding
         PRIVATE $<$<AND:$<CXX_COMPILER_ID:IntelLLVM>,$<COMPILE_LANGUAGE:CXX>>:-Wno-tautological-constant-compare>)
 
 TARGET_LINK_LIBRARIES(
-    BenchmarkExecutable
-        PRIVATE CLI11::CLI11
+    TemplateGPUPythonBinding
+        PRIVATE pybind11::headers
         PRIVATE spdlog::spdlog_header_only
-        PRIVATE TemplateCPUSharedLibrary
         PRIVATE TemplateGPUSharedLibrary)
 
 SET_TARGET_PROPERTIES(
-    BenchmarkExecutable
+    TemplateGPUPythonBinding
         PROPERTIES
+            INTERPROCEDURAL_OPTIMIZATION ON
+            CXX_VISIBILITY_PRESET default
+            VISIBILITY_INLINES_HIDDEN ON
             OUTPUT_NAME ${PROJECT_NAME})
 
-IF(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows")
-
-    ADD_CUSTOM_COMMAND(
-        TARGET BenchmarkExecutable
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:BenchmarkExecutable> $<TARGET_FILE_DIR:BenchmarkExecutable>
-        COMMAND_EXPAND_LISTS)
-
-ENDIF()
+# Let's define where the python binding is installed.
 
 INSTALL(
     TARGETS
-        BenchmarkExecutable
+        TemplateGPUPythonBinding
+    LIBRARY
+        DESTINATION bindings/python/${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}
+        COMPONENT runtime
     RUNTIME
-        DESTINATION bin
+        DESTINATION bindings/python/${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}
         COMPONENT runtime)
