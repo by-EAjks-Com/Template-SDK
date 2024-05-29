@@ -1,1 +1,1 @@
-# Template-SDK, by-EAjks.Com FPGA/C++ Development Best Practices
+# Template-SDK, C++ Development Best Practices @ by-EAjks.Com
