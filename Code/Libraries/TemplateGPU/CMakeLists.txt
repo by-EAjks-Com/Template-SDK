@@ -14,7 +14,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-PROJECT(TemplateGPU VERSION ${TemplateSDK_VERSION} LANGUAGES CXX CUDA)
+PROJECT(TemplateGPU VERSION ${Template-SDK_VERSION} LANGUAGES CXX CUDA)
 
 CONFIGURE_FILE(
     ${PROJECT_SOURCE_DIR}/include-api/byEAjksCom/Libraries/Template/GPU/Version.h.in

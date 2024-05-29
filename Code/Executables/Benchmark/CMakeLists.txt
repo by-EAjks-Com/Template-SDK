@@ -14,7 +14,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-PROJECT(Benchmark VERSION ${TemplateSDK_VERSION} LANGUAGES CXX)
+PROJECT(Benchmark VERSION ${Template-SDK_VERSION} LANGUAGES CXX)
 
 CONFIGURE_FILE(
     ${PROJECT_SOURCE_DIR}/src/Version.h.in

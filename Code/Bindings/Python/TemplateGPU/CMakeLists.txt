@@ -14,7 +14,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-PROJECT(TemplateGPU VERSION ${TemplateSDK_VERSION} LANGUAGES CXX)
+PROJECT(TemplateGPU VERSION ${Template-SDK_VERSION} LANGUAGES CXX)
 
 FILE(GLOB_RECURSE TemplateGPUPythonBindingHeaders ${PROJECT_SOURCE_DIR}/include/*.h)
 FILE(GLOB_RECURSE TemplateGPUPythonBindingSources ${PROJECT_SOURCE_DIR}/src/*.cpp)
