@@ -1,7 +1,7 @@
 # Building, Testing, and Deploying the TemplateSDK Package
 
 ```powershell
-cd /Path/To/TemplateSDK/DevOps/BareMetal
+cd /Path/To/Template-SDK/DevOps/BareMetal
 ```
 
 ## On Windows

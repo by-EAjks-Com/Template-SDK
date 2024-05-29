@@ -1,7 +1,7 @@
 # Building, Testing, and Deploying the TemplateSDK Container Image
 
 ```powershell
-cd /Path/To/TemplateSDK
+cd /Path/To/Template-SDK
 ```
 
 ## Prerequisites
@@ -25,7 +25,7 @@ docker run \
     --tty \
     --gpus all \
     --name template-sdk \
-    --volume '/Path/To/TemplateSDK:/src' \
+    --volume '/Path/To/Template-SDK:/src' \
     --workdir /build \
     docker.io/eajkseajks/cpp-cuda:3.0.0-sdk-core-ubuntu-22.04
 ```
@@ -42,7 +42,7 @@ docker run `
     --tty `
     --gpus all `
     --name template-sdk `
-    --volume '/Path/To/TemplateSDK:/src' `
+    --volume '/Path/To/Template-SDK:/src' `
     --workdir /build `
     docker.io/eajkseajks/cpp-cuda:3.0.0-sdk-core-ubuntu-22.04
 ```
@@ -113,7 +113,7 @@ make package
 ```bash
 apt install ./*.deb
 
-export PATH=/opt/by-EAjks.Com/TemplateSDK/bin${PATH:+:${PATH}}
+export PATH=/opt/by-EAjks.Com/Template-SDK/bin${PATH:+:${PATH}}
 
 Benchmark -vvv
 Demonstration -vvv
@@ -129,7 +129,7 @@ docker build `
     --build-arg RUNTIME_IMAGE_NAME=cpp-cuda `
     --build-arg RUNTIME_IMAGE_TAG=3.0.0-runtime-core-ubuntu-22.04 `
     --file DevOps/Docker/TemplateSDK/v1.0.0/Dockerfile `
-    --tag docker.io/eajkseajks/template-sdk:v1.0.0 `
-    --tag docker.io/eajkseajks/template-sdk:latest `
+    --tag docker.io/eajkseajks/templatesdk:v1.0.0 `
+    --tag docker.io/eajkseajks/templatesdk:latest `
     .
 ```

@@ -1,4 +1,4 @@
-//  Template SDK, by-EAjks.Com FPGA/C++ Development Best Practices
+//  Template-SDK, by-EAjks.Com FPGA/C++ Development Best Practices
 //  Copyright (c) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -28,14 +28,14 @@
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
-// Additional TemplateSDK Headers
+// Additional Template-SDK Headers
 #include "Version.h"
+#include "byEAjksCom/Libraries/Template/CPU/ObjectFactory.h"
 #include "byEAjksCom/Libraries/Template/CPU/ObjectFactoryIF.h"
 #include "byEAjksCom/Libraries/Template/CPU/ObjectIF.h"
-#include "byEAjksCom/Libraries/Template/CPU/ObjectFactory.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectFactory.h"
 #include "byEAjksCom/Libraries/Template/GPU/ObjectFactoryIF.h"
 #include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
-#include "byEAjksCom/Libraries/Template/GPU/ObjectFactory.h"
 
 namespace CPU = ::byEAjksCom::Libraries::Template::CPU;
 namespace GPU = ::byEAjksCom::Libraries::Template::GPU;

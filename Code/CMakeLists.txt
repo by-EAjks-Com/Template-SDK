@@ -1,4 +1,4 @@
-#   Template SDK, by-EAjks.Com FPGA/C++ Development Best Practices
+#   Template-SDK, by-EAjks.Com FPGA/C++ Development Best Practices
 #   Copyright (c) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.29.3)
 
 STRING(TIMESTAMP TemplateSDK_VERSION "1.0.0.%s" UTC)
 
-PROJECT(TemplateSDK VERSION ${TemplateSDK_VERSION} LANGUAGES NONE)
+PROJECT(Template-SDK VERSION ${TemplateSDK_VERSION} LANGUAGES NONE)
 
 IF(NOT DEFINED CMAKE_CXX_STANDARD)
     SET(CMAKE_CXX_STANDARD 23)
@@ -34,10 +34,11 @@ IF(NOT DEFINED CMAKE_CUDA_STANDARD)
 ENDIF()
 
 INSTALL(
-    FILES ${PROJECT_SOURCE_DIR}/AUTHORS.md
-          ${PROJECT_SOURCE_DIR}/CHANGELOG.md
-          ${PROJECT_SOURCE_DIR}/LICENSE
-          ${PROJECT_SOURCE_DIR}/README.md
+    FILES
+        ${PROJECT_SOURCE_DIR}/AUTHORS.md
+        ${PROJECT_SOURCE_DIR}/CHANGELOG.md
+        ${PROJECT_SOURCE_DIR}/LICENSE
+        ${PROJECT_SOURCE_DIR}/README.md
     DESTINATION .
     COMPONENT runtime)
 

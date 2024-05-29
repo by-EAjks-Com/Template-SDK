@@ -1,4 +1,4 @@
-//  Template SDK, by-EAjks.Com FPGA/C++ Development Best Practices
+//  Template-SDK, by-EAjks.Com FPGA/C++ Development Best Practices
 //  Copyright (c) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@
 // Dependency Headers
 #include <spdlog/spdlog.h>
 
-// Additional TemplateGPU Headers
+// Additional Template-SDK Headers
 #include "byEAjksCom/Libraries/Template/GPU/ObjectBase.h"
 
 __global__

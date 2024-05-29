@@ -1,4 +1,4 @@
-#   Template SDK, by-EAjks.Com FPGA/C++ Development Best Practices
+#   Template-SDK, by-EAjks.Com FPGA/C++ Development Best Practices
 #   Copyright (c) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -36,11 +36,11 @@ RUN apt-get update \
  && apt-get autoremove --yes --purge \
  && rm -rf /var/lib/apt/lists/*
 
- WORKDIR /tools
+WORKDIR /tools
 
- RUN wget -c https://github.com/Kitware/CMake/releases/download/v3.29.3/cmake-3.29.3-linux-x86_64.tar.gz -O - | tar -xz -C .
+RUN wget -c https://github.com/Kitware/CMake/releases/download/v3.29.3/cmake-3.29.3-linux-x86_64.tar.gz -O - | tar -xz -C .
 
- WORKDIR /src
+WORKDIR /src
 
 COPY ./Code ./Code
 
@@ -71,5 +71,4 @@ RUN apt-get update \
  && rm -f  /root/*.deb \
  && rm -rf /var/lib/apt/lists/*
 
-ENV PATH /opt/by-EAjks.Com/TemplateSDK/bin${PATH:+:${PATH}}
-ENV LD_LIBRARY_PATH /opt/by-EAjks.Com/TemplateSDK/lib/shared${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+ENV PATH /opt/by-EAjks.Com/Template-SDK/bin${PATH:+:${PATH}}
