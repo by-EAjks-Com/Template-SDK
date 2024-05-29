@@ -14,5 +14,5 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-ADD_SUBDIRECTORY(Template-CPU)
-ADD_SUBDIRECTORY(Template-GPU)
+ADD_SUBDIRECTORY(TemplateCPU)
+ADD_SUBDIRECTORY(TemplateGPU)

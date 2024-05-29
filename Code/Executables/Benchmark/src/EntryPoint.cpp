@@ -28,21 +28,21 @@
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
-// Additional Template SDK Headers
+// Additional TemplateSDK Headers
 #include "Version.h"
-#include "byEAjksCom/Libraries/Template/CPU/IObjectFactory.h"
-#include "byEAjksCom/Libraries/Template/CPU/IObject.h"
-#include "byEAjksCom/Libraries/Template/CPU/CObjectFactory.h"
-#include "byEAjksCom/Libraries/Template/GPU/IObjectFactory.h"
-#include "byEAjksCom/Libraries/Template/GPU/IObject.h"
-#include "byEAjksCom/Libraries/Template/GPU/CObjectFactory.h"
+#include "byEAjksCom/Libraries/Template/CPU/ObjectFactoryIF.h"
+#include "byEAjksCom/Libraries/Template/CPU/ObjectIF.h"
+#include "byEAjksCom/Libraries/Template/CPU/ObjectFactory.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectFactoryIF.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectFactory.h"
 
 namespace CPU = ::byEAjksCom::Libraries::Template::CPU;
 namespace GPU = ::byEAjksCom::Libraries::Template::GPU;
 
-//! \brief Is the entry-point of the executable.
-//! \param[in] argc The number of command-line arguments.
-//! \param[in] argv The command-line arguments.
+/// @brief Is the entry-point of the executable.
+/// @param[in] argc The number of command-line arguments.
+/// @param[in] argv The command-line arguments.
 int
 main(
     int argc,
@@ -121,19 +121,19 @@ main(
     {
         logger->info("starting {}, v{}", EXECUTABLE_NAME, EXECUTABLE_VERSION);
 
-        ::std::unique_ptr<CPU::IObjectFactory>
-        factoryCPU = ::std::make_unique<CPU::CObjectFactory>(logger);
+        ::std::unique_ptr<CPU::ObjectFactoryIF>
+        factoryCPU { ::std::make_unique<CPU::ObjectFactory>(logger) };
 
-        ::std::unique_ptr<CPU::IObject>
-        instanceCPU = factoryCPU->CreateInstance();
+        ::std::unique_ptr<CPU::ObjectIF>
+        instanceCPU { factoryCPU->CreateInstance() };
 
         instanceCPU->Run();
 
-        ::std::unique_ptr<GPU::IObjectFactory>
-        factoryGPU = ::std::make_unique<GPU::CObjectFactory>(logger);
+        ::std::unique_ptr<GPU::ObjectFactoryIF>
+        factoryGPU { ::std::make_unique<GPU::ObjectFactory>(logger) };
 
-        ::std::unique_ptr<GPU::IObject>
-        instanceGPU = factoryGPU->CreateInstance();
+        ::std::unique_ptr<GPU::ObjectIF>
+        instanceGPU { factoryGPU->CreateInstance() };
 
         instanceGPU->Run();
 
