@@ -37,43 +37,44 @@ public:
     /// @brief Constructs a new instance of the ObjectIF interface.
     explicit
     ObjectIF()
-    = default;
+    noexcept = default;
 
     //! Avoids implicit generation of the copy constructor.
     explicit
     ObjectIF(
         const ObjectIF & other)
-    = delete;
+    noexcept = delete;
 
     //! Avoids implicit generation of the move constructor.
     explicit
     ObjectIF(
         ObjectIF && other)
-    = delete;
+    noexcept = delete;
 
     /// @brief Destructs the instance of the ObjectIF interface.
     virtual
     ~ObjectIF()
+    noexcept
     {
     }
 
     //! Avoids implicit generation of the copy assignment.
-    ObjectIF &
+    auto
     operator=(
         const ObjectIF & other)
-    = delete;
+    noexcept -> ObjectIF & = delete;
 
     //! Avoids implicit generation of the move assignment.
-    ObjectIF &
+    auto
     operator=(
         ObjectIF && other)
-    = delete;
+    noexcept -> ObjectIF & = delete;
 
     /// @brief Runs.
     virtual
-    void
+    auto
     Run()
-    = 0;
+    noexcept -> void = 0;
 };
 
 } // byEAjksCom::Libraries::Template::GPU

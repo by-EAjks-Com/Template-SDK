@@ -53,13 +53,13 @@ public:
     explicit
     ObjectBase(
         const ObjectBase & other)
-    = delete;
+    noexcept = delete;
 
     //! Avoids implicit generation of the move constructor.
     explicit
     ObjectBase(
         ObjectBase && other)
-    = delete;
+    noexcept = delete;
 
     /// @brief Destructs the instance of the ObjectBase class.
     virtual
@@ -72,24 +72,24 @@ public:
     }
 
     //! Avoids implicit generation of the copy assignment.
-    ObjectBase &
+    auto
     operator=(
         const ObjectBase & other)
-    = delete;
+    noexcept -> ObjectBase & = delete;
 
     //! Avoids implicit generation of the move assignment.
-    ObjectBase &
+    auto
     operator=(
         ObjectBase && other)
-    = delete;
+    noexcept -> ObjectBase & = delete;
 
 protected:
 
     /// @brief Runs.
     virtual
-    void
+    auto
     Run()
-    override
+    noexcept -> void override
     {
         this->logger->debug("entering ObjectBase::Run()");
     }

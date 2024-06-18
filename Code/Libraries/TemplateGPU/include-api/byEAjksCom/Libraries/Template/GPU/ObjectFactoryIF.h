@@ -39,44 +39,45 @@ public:
     /// @brief Constructs a new instance of the ObjectFactoryIF interface.
     explicit
     ObjectFactoryIF()
-    = default;
+    noexcept = default;
 
     //! Avoids implicit generation of the copy constructor.
     explicit
     ObjectFactoryIF(
         const ObjectFactoryIF & other)
-    = delete;
+    noexcept = delete;
 
     //! Avoids implicit generation of the move constructor.
     explicit
     ObjectFactoryIF(
         ObjectFactoryIF && other)
-    = delete;
+    noexcept = delete;
 
     /// @brief Destructs the instance of the ObjectFactoryIF interface.
     virtual
     ~ObjectFactoryIF()
+    noexcept
     {
     }
 
     //! Avoids implicit generation of the copy assignment.
-    ObjectFactoryIF &
+    auto
     operator=(
         const ObjectFactoryIF & other)
-    = delete;
+    noexcept -> ObjectFactoryIF & = delete;
 
     //! Avoids implicit generation of the move assignment.
-    ObjectFactoryIF &
+    auto
     operator=(
         ObjectFactoryIF && other)
-    = delete;
+    noexcept -> ObjectFactoryIF & = delete;
 
     /// @brief Creates an instance.
     /// @return An instance.
     virtual
-    ::std::unique_ptr<ObjectIF>
+    auto
     CreateInstance()
-    = 0;
+    noexcept -> ::std::unique_ptr<ObjectIF> = 0;
 };
 
 } // byEAjksCom::Libraries::Template::GPU

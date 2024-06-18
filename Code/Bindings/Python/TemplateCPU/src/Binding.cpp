@@ -38,13 +38,13 @@ PYBIND11_MODULE(TemplateCPU, module)
     module.doc() = "Python Binding for the TemplateCPU C++ Library";
 
     ::std::shared_ptr<::spdlog::logger>
-    logger = ::std::make_shared<::spdlog::logger>(CPU::LIBRARY_NAME);
+    logger { ::std::make_shared<::spdlog::logger>(CPU::LIBRARY_NAME) };
     logger->flush_on(::spdlog::level::err);
     logger->set_level(::spdlog::level::trace);
     ::spdlog::register_logger(logger);
 
     ::spdlog::sink_ptr
-    sink = ::std::make_shared<::spdlog::sinks::stdout_color_sink_mt>();
+    sink { ::std::make_shared<::spdlog::sinks::stdout_color_sink_mt>() };
     sink->set_pattern("%^[%L] %v%$");
     sink->set_level(::spdlog::level::trace);
     logger->sinks().push_back(sink);

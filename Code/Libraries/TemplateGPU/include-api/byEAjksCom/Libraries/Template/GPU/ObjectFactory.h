@@ -50,13 +50,13 @@ public:
     explicit
     ObjectFactory(
         const ObjectFactory & other)
-    = delete;
+    noexcept = delete;
 
     //! Avoids implicit generation of the move constructor.
     explicit
     ObjectFactory(
         ObjectFactory && other)
-    = delete;
+    noexcept = delete;
 
     /// @brief Destructs the instance of the ObjectFactory class.
     virtual
@@ -64,23 +64,23 @@ public:
     noexcept;
 
     //! Avoids implicit generation of the copy assignment.
-    ObjectFactory &
+    auto
     operator=(
         const ObjectFactory & other)
-    = delete;
+    noexcept -> ObjectFactory & = delete;
 
     //! Avoids implicit generation of the move assignment.
-    ObjectFactory &
+    auto
     operator=(
         ObjectFactory && other)
-    = delete;
+    noexcept -> ObjectFactory & = delete;
 
     /// @brief Creates an instance.
     /// @return An instance.
     virtual
-    ::std::unique_ptr<ObjectIF>
+    auto
     CreateInstance()
-    override final;
+    noexcept -> ::std::unique_ptr<ObjectIF> override final;
 
 protected:
 

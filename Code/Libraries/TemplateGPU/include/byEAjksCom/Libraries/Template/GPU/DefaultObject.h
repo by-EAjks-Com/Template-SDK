@@ -49,13 +49,13 @@ public:
     explicit
     DefaultObject(
         const DefaultObject & other)
-    = delete;
+    noexcept = delete;
 
     //! Avoids implicit generation of the move constructor.
     explicit
     DefaultObject(
         DefaultObject && other)
-    = delete;
+    noexcept = delete;
 
     /// @brief Destructs the instance of the DefaultObject class.
     virtual
@@ -63,22 +63,22 @@ public:
     noexcept;
 
     //! Avoids implicit generation of the copy assignment.
-    DefaultObject &
+    auto
     operator=(
         const DefaultObject & other)
-    = delete;
+    noexcept -> DefaultObject & = delete;
 
     //! Avoids implicit generation of the move assignment.
-    DefaultObject &
+    auto
     operator=(
         DefaultObject && other)
-    = delete;
+    noexcept -> DefaultObject & = delete;
 
     /// @brief Runs.
     virtual
-    void
+    auto
     Run()
-    override final;
+    noexcept -> void override final;
 };
 
 } // byEAjksCom::Libraries::Template::GPU

@@ -14,7 +14,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.29.3)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.29.6)
 
 STRING(TIMESTAMP Template-SDK_VERSION "1.0.0.%s" UTC)
 

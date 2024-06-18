@@ -48,15 +48,16 @@ noexcept
     this->logger = nullptr;
 }
 
-::std::unique_ptr<ObjectIF>
+auto
 ObjectFactory::CreateInstance()
+noexcept -> ::std::unique_ptr<ObjectIF>
 {
     this->logger->debug("entering ObjectFactory::CreateInstance()");
 
     ::std::unique_ptr<DefaultObject>
     instance { ::std::make_unique<DefaultObject>(this->logger) };
 
-    return (::std::move(instance));
+    return (instance);
 }
 
 } // byEAjksCom::Libraries::Template::::GPU

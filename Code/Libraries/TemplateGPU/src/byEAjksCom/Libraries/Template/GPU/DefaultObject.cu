@@ -61,16 +61,17 @@ noexcept
     this->logger->debug("entering DefaultObject::DTOR()");
 }
 
-void
+auto
 DefaultObject::Run()
+noexcept -> void
 {
     this->logger->debug("entering DefaultObject::Run()");
 
     ObjectBase::Run();
 
-    int deviceCount = 0;
+    int deviceCount { 0 };
 
-    cudaError_t error_id = cudaGetDeviceCount(&deviceCount);
+    cudaError_t error_id { cudaGetDeviceCount(&deviceCount) };
 
     if (error_id != cudaSuccess)
     {
@@ -86,7 +87,7 @@ DefaultObject::Run()
         this->logger->info("There are no available device(s) that support CUDA") :
         this->logger->info("Detected {} CUDA capable device(s)", deviceCount);
 
-    int N = 1 << 20;
+    int N { 1 << 20 };
 
     float * x;
     float * y;
@@ -100,13 +101,13 @@ DefaultObject::Run()
         y[i] = 2.0f;
     }
 
-    int blockSize = 256;
-    int numBlocks = (N + blockSize - 1) / blockSize;
+    int blockSize { 256 };
+    int numBlocks { (N + blockSize - 1) / blockSize };
     add<<<numBlocks, blockSize>>>(N, x, y);
 
     cudaDeviceSynchronize();
 
-    float maxError = 0.0f;
+    float maxError { 0.0f };
 
     for (int i = 0; i < N; i++)
     {

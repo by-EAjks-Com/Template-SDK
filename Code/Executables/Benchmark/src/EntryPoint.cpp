@@ -81,14 +81,14 @@ main(
     }
 
     ::std::shared_ptr<::spdlog::logger>
-    logger = ::std::make_shared<::spdlog::logger>(EXECUTABLE_NAME);
+    logger { ::std::make_shared<::spdlog::logger>(EXECUTABLE_NAME) };
     logger->flush_on(::spdlog::level::err);
     logger->set_level(::spdlog::level::trace);
     ::spdlog::register_logger(logger);
 
     {
         ::spdlog::sink_ptr
-        sink = ::std::make_shared<::spdlog::sinks::stdout_color_sink_mt>();
+        sink { ::std::make_shared<::spdlog::sinks::stdout_color_sink_mt>() };
         sink->set_pattern("%^[%L] %v%$");
         logger->sinks().push_back(sink);
 
@@ -104,7 +104,7 @@ main(
     if (logToFile == true)
     {
         ::spdlog::sink_ptr
-        sink = ::std::make_shared<::spdlog::sinks::basic_file_sink_mt>(logFileName);
+        sink { ::std::make_shared<::spdlog::sinks::basic_file_sink_mt>(logFileName) };
         sink->set_pattern("[%T.%F] %l: %v (%n)");
         logger->sinks().push_back(sink);
 

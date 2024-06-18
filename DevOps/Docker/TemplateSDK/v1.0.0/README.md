@@ -73,7 +73,7 @@ rm -rf /var/lib/apt/lists/*
 ```bash
 mkdir /tools
 
-wget -c https://github.com/Kitware/CMake/releases/download/v3.29.3/cmake-3.29.3-linux-x86_64.tar.gz -O - | tar -xz -C /tools
+wget -c https://github.com/Kitware/CMake/releases/download/v3.29.6/cmake-3.29.6-linux-x86_64.tar.gz -O - | tar -xz -C /tools
 ```
 
 #### Compiling with the Gnu GCC/G++ Compilers
@@ -81,7 +81,7 @@ wget -c https://github.com/Kitware/CMake/releases/download/v3.29.3/cmake-3.29.3-
 ```bash
 . /opt/intel/oneapi/setvars.sh
 
-/tools/cmake-3.29.3-linux-x86_64/bin/cmake \
+/tools/cmake-3.29.6-linux-x86_64/bin/cmake \
     -G "Unix Makefiles" \
     -D CMAKE_C_COMPILER=gcc \
     -D CMAKE_CXX_COMPILER=g++ \
@@ -97,7 +97,7 @@ make package
 ```bash
 . /opt/intel/oneapi/setvars.sh
 
-/tools/cmake-3.29.3-linux-x86_64/bin/cmake \
+/tools/cmake-3.29.6-linux-x86_64/bin/cmake \
     -G "Unix Makefiles" \
     -D CMAKE_C_COMPILER=icx \
     -D CMAKE_CXX_COMPILER=icpx \
