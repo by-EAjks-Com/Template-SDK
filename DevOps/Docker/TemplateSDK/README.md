@@ -1,1 +1,0 @@
-# TemplateSDK Container Image

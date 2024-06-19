@@ -1,4 +1,4 @@
-#   Template-SDK, by-EAjks.Com FPGA/C++ Development Best Practices
+#   Template-SDK, by-EAjks.Com C++ Development Best Practices
 #   Copyright (c) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -14,7 +14,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.29.3)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.29.6)
 
 STRING(TIMESTAMP Template-SDK_VERSION "1.0.0.%s" UTC)
 
@@ -87,13 +87,13 @@ IF(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
         COMPONENT runtime)
 
     CONFIGURE_FILE(
-        ${PROJECT_SOURCE_DIR}/Miscellaneous/Linux/usr/local/lib/python3.11/dist-packages/${PROJECT_NAME}.pth.in
-        ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/usr/local/lib/python3.11/dist-packages/${PROJECT_NAME}.pth
+        ${PROJECT_SOURCE_DIR}/Miscellaneous/Linux/usr/local/lib/python3.12/dist-packages/${PROJECT_NAME}.pth.in
+        ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/usr/local/lib/python3.12/dist-packages/${PROJECT_NAME}.pth
         @ONLY)
 
     INSTALL(
-        FILES ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/usr/local/lib/python3.11/dist-packages/${PROJECT_NAME}.pth
-        DESTINATION /usr/local/lib/python3.11/dist-packages
+        FILES ${PROJECT_BINARY_DIR}/Miscellaneous/Linux/usr/local/lib/python3.12/dist-packages/${PROJECT_NAME}.pth
+        DESTINATION /usr/local/lib/python3.12/dist-packages
         COMPONENT runtime)
 
 ENDIF()
@@ -127,7 +127,7 @@ IF(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
         SET(CPACK_GENERATOR "DEB")
         SET(CPACK_DEB_PACKAGE_ARCHITECTURE "amd64")
         SET(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/conffiles;${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/preinst;${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/postinst;${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/prerm;${PROJECT_BINARY_DIR}/Miscellaneous/Linux/DEBIAN/postrm")
-        SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libpython3.11")
+        SET(CPACK_DEBIAN_PACKAGE_DEPENDS "libpython3.12")
     ENDIF()
 
     IF(${LINUX_DISTRIBUTION_ID} MATCHES "centos|redhat")

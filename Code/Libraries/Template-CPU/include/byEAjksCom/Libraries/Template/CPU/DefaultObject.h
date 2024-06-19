@@ -1,0 +1,95 @@
+//  Template-SDK, by-EAjks.Com C++ Development Best Practices
+//  Copyright (c) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#pragma once
+
+// Standard C-->C++ Headers
+#include <cmath>
+#include <cstdint>
+
+// Standard C++/STL Headers
+#include <memory>
+
+// Dependency Headers
+#include <spdlog/spdlog.h>
+
+// Additional Template-SDK Headers
+#include "byEAjksCom/Libraries/Template/CPU/PreprocessorMacros.h"
+#include "byEAjksCom/Libraries/Template/CPU/ObjectBase.h"
+
+namespace byEAjksCom::Libraries::Template::CPU {
+
+/// @brief This class implements ...
+class TEMPLATE_CPU_DLL_HIDDEN DefaultObject final
+:   public ObjectBase
+{
+public:
+
+    /// @brief Constructs a new instance of the DefaultObject class.
+    /// @param[in] logger The SpdLog logger used by the calling function.
+    explicit
+    DefaultObject(
+        ::std::shared_ptr<::spdlog::logger> logger)
+    :   ObjectBase(::std::move(logger))
+    {
+        this->logger->debug("entering DefaultObject::CTOR()");
+    }
+
+    /// Avoids implicit generation of the copy constructor.
+    explicit
+    DefaultObject(
+        const DefaultObject & other)
+    = delete;
+
+    /// Avoids implicit generation of the move constructor.
+    explicit
+    DefaultObject(
+        DefaultObject && other)
+    noexcept = delete;
+
+    /// @brief Destructs the instance of the DefaultObject class.
+    virtual
+    ~DefaultObject()
+    noexcept
+    {
+        this->logger->debug("entering DefaultObject::DTOR()");
+    }
+
+    /// Avoids implicit generation of the copy assignment.
+    auto
+    operator=(
+        const DefaultObject & other)
+    -> DefaultObject & = delete;
+
+    /// Avoids implicit generation of the move assignment.
+    auto
+    operator=(
+        DefaultObject && other)
+    noexcept -> DefaultObject & = delete;
+
+    /// @brief Runs.
+    virtual
+    auto
+    Run()
+    -> void override final
+    {
+        this->logger->debug("entering DefaultObject::Run()");
+
+        ObjectBase::Run();
+    }
+};
+
+} // byEAjksCom::Libraries::Template::CPU

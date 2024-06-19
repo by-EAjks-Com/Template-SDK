@@ -1,4 +1,4 @@
-#   Template-SDK, by-EAjks.Com FPGA/C++ Development Best Practices
+#   Template-SDK, by-EAjks.Com C++ Development Best Practices
 #   Copyright (c) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -14,5 +14,5 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-ADD_SUBDIRECTORY(TemplateCPU)
-ADD_SUBDIRECTORY(TemplateGPU)
+ADD_SUBDIRECTORY(Template-CPU)
+ADD_SUBDIRECTORY(Template-GPU)

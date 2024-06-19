@@ -1,4 +1,4 @@
-#   Template-SDK, by-EAjks.Com FPGA/C++ Development Best Practices
+#   Template-SDK, by-EAjks.Com C++ Development Best Practices
 #   Copyright (c) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -42,8 +42,8 @@ TARGET_LINK_LIBRARIES(
     BenchmarkExecutable
         PRIVATE CLI11::CLI11
         PRIVATE spdlog::spdlog_header_only
-        PRIVATE TemplateCPUSharedLibrary
-        PRIVATE TemplateGPUSharedLibrary)
+        PRIVATE Template-CPUSharedLibrary
+        PRIVATE Template-GPUSharedLibrary)
 
 SET_TARGET_PROPERTIES(
     BenchmarkExecutable
