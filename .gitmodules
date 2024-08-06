@@ -1,0 +1,9 @@
+[submodule "Code/Dependencies/CLI11"]
+	path = Code/Dependencies/CLI11
+	url = https://github.com/by-EAjks-Com/CLI11.git
+[submodule "Code/Dependencies/PyBind11"]
+	path = Code/Dependencies/PyBind11
+	url = https://github.com/by-EAjks-Com/PyBind11.git
+[submodule "Code/Dependencies/SpdLog"]
+	path = Code/Dependencies/SpdLog
+	url = https://github.com/by-EAjks-Com/SpdLog.git

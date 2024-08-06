@@ -1,0 +1,41 @@
+#   Template-SDK, by-EAjks.Com C++ Development Best Practices
+#   Copyright (c) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
+#
+#   This program is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+PROJECT_NAME            = "@PROJECT_NAME@"
+PROJECT_NUMBER          =  @PROJECT_VERSION@
+FULL_PATH_NAMES         =  YES
+STRIP_FROM_INC_PATH     =  @PROJECT_SOURCE_DIR@/include-api  @PROJECT_SOURCE_DIR@/include  @PROJECT_SOURCE_DIR@/src
+STRIP_FROM_PATH         =  @PROJECT_SOURCE_DIR@/include-api  @PROJECT_SOURCE_DIR@/include  @PROJECT_SOURCE_DIR@/src
+INPUT                   =  @PROJECT_SOURCE_DIR@/include-api  @doxy_main_page@
+FILE_PATTERNS           =  *.h *.cpp
+RECURSIVE               =  YES
+QUIET                   =  YES
+WARNINGS                =  NO
+WARN_IF_UNDOCUMENTED    =  NO
+REFERENCES_LINK_SOURCE  =  NO
+VERBATIM_HEADERS        =  NO
+EXTRACT_ALL             =  YES
+HIDE_UNDOC_RELATIONS    =  NO
+HAVE_DOT                =  YES
+CLASS_GRAPH             =  YES
+COLLABORATION_GRAPH     =  YES
+UML_LOOK                =  YES
+UML_LIMIT_NUM_FIELDS    =  50
+TEMPLATE_RELATIONS      =  YES
+DOT_GRAPH_MAX_NODES     =  100
+MAX_DOT_GRAPH_DEPTH     =  0
+DOT_IMAGE_FORMAT        =  svg
+INTERACTIVE_SVG         =  YES

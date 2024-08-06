@@ -1,0 +1,80 @@
+#   Template-SDK, by-EAjks.Com C++ Development Best Practices
+#   Copyright (c) 2022-2024 Andrea and Eric DELAGE <Contact@by-EAjks.Com>
+#
+#   This program is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+env:
+  BUILD_TYPE: Release
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: docker.io/eajkseajks/cpp-cuda:1.0.0-sdk-core-ubuntu-24.04
+      volumes:
+        - ${{github.workspace}}:/src
+    steps:
+      - name: Install some required packages
+        run: |
+          apt update
+          apt install --yes --no-install-recommends \
+              git \
+              git-lfs
+          apt-get autoremove --yes --purge
+          rm -rf /var/lib/apt/lists/*
+      - name: Checkout the Git repository
+        uses: actions/checkout@v4.1.7
+        with:
+          submodules: true
+        # https://github.com/actions/checkout/tags
+      - name: Install some required packages
+        run: |
+          apt update
+          apt install --yes --no-install-recommends \
+              wget \
+              doxygen \
+              graphviz \
+              libpython3.12-dev \
+              python3.12
+          apt-get autoremove --yes --purge
+          rm -rf /var/lib/apt/lists/*
+      - name: Install a specific CMake version
+        run: |
+          mkdir /tools && cd /tools
+          wget -c https://github.com/Kitware/CMake/releases/download/v3.30.0/cmake-3.30.0-linux-x86_64.tar.gz -O - | tar -xz
+      - name: Setup the CMake project
+        run: |
+          mkdir /build && cd /build
+          . /opt/intel/oneapi/setvars.sh
+          /tools/cmake-3.30.0-linux-x86_64/bin/cmake \
+            -G "Unix Makefiles" \
+            -D CMAKE_C_COMPILER=icx \
+            -D CMAKE_CXX_COMPILER=icpx \
+            -D CMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} \
+            -D PYBIND11_FINDPYTHON=ON \
+            -D TEMPLATE_SDK_VERSION=1.2.3 \
+            /src/Code
+          make package
+      - name: Archive the generated debian package
+        uses: actions/upload-artifact@v4.3.4
+        with:
+          path: /build/Template-SDK_1.2.3.deb
+        # https://github.com/actions/upload-artifact/tags
