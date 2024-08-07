@@ -59,12 +59,12 @@ jobs:
       - name: Install a specific CMake version
         run: |
           mkdir /tools && cd /tools
-          wget -c https://github.com/Kitware/CMake/releases/download/v3.30.0/cmake-3.30.0-linux-x86_64.tar.gz -O - | tar -xz
+          wget -c https://github.com/Kitware/CMake/releases/download/v3.30.2/cmake-3.30.2-linux-x86_64.tar.gz -O - | tar -xz
       - name: Setup the CMake project
         run: |
           mkdir /build && cd /build
           . /opt/intel/oneapi/setvars.sh
-          /tools/cmake-3.30.0-linux-x86_64/bin/cmake \
+          /tools/cmake-3.30.2-linux-x86_64/bin/cmake \
             -G "Ninja" \
             -D CMAKE_C_COMPILER=icx \
             -D CMAKE_CXX_COMPILER=icpx \

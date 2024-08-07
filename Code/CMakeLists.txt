@@ -14,7 +14,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.30.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.30.2)
 
 SET(TEMPLATE_SDK_VERSION "0.0.0.0" CACHE STRING "Template-SDK Version")
 

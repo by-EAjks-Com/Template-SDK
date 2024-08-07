@@ -22,7 +22,7 @@ pushd      GeneratePackagesForWindowsUsingMicrosoftVisualStudio17
 call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
 call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
 
-C:\Tools\cmake-3.30.0-windows-x86_64\bin\cmake.exe ^
+C:\Tools\cmake-3.30.2-windows-x86_64\bin\cmake.exe ^
     -G "Visual Studio 17 2022" ^
     -D CMAKE_C_COMPILER=cl ^
     -D CMAKE_C_COMPILER_AR=lib ^
