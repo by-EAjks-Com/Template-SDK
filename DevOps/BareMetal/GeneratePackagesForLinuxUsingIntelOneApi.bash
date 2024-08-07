@@ -22,13 +22,13 @@ pushd     GeneratePackagesForLinuxUsingIntelOneApi
 . /opt/intel/OneApi/setvars.sh
 
 cmake \
-    -G "Unix Makefiles" \
+    -G "Ninja" \
     -D CMAKE_C_COMPILER=icx \
     -D CMAKE_CXX_COMPILER=icpx \
     -D CMAKE_BUILD_TYPE=Release \
     -D PYBIND11_FINDPYTHON=ON \
     ../../../Code
 
-make package
+ninja package
 
 popd
