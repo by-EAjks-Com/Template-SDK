@@ -23,15 +23,13 @@ ARG TEMPLATE_SDK_VERSION
 
 FROM ${IMAGE_REPOSITORY}/${DEVELOPMENT_IMAGE_NAME}:${DEVELOPMENT_IMAGE_TAG} AS build
 
-LABEL maintainer "Andrea and Eric DELAGE <Contact@by-EAjks.Com>"
+LABEL maintainer="Andrea and Eric DELAGE <Contact@by-EAjks.Com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
         wget \
-        doxygen \
-        graphviz \
         libpython3.12-dev \
         python3.12 \
  && apt-get autoremove --yes --purge \
@@ -62,17 +60,17 @@ RUN . /opt/intel/oneapi/setvars.sh \
 
 FROM ${IMAGE_REPOSITORY}/${RUNTIME_IMAGE_NAME}:${RUNTIME_IMAGE_TAG} AS deploy
 
-LABEL maintainer "Andrea and Eric DELAGE <Contact@by-EAjks.Com>"
+LABEL maintainer="Andrea and Eric DELAGE <Contact@by-EAjks.Com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY --from=build /build/Template-SDK_${TEMPLATE_SDK_VERSION}.deb /root
+COPY --from=build /build/Template-SDK_*.deb /root
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
-        /root/Template-SDK_${TEMPLATE_SDK_VERSION}.deb \
+        /root/Template-SDK_*.deb \
  && apt-get autoremove --yes --purge \
- && rm -f  /root/Template-SDK_${TEMPLATE_SDK_VERSION}.deb \
+ && rm -f  /root/Template-SDK_*.deb \
  && rm -rf /var/lib/apt/lists/*
 
-ENV PATH /opt/by-EAjks.Com/Template-SDK/bin${PATH:+:${PATH}}
+ENV PATH=/opt/by-EAjks.Com/Template-SDK/bin${PATH:+:${PATH}}
