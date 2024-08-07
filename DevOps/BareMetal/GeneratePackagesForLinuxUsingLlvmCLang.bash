@@ -21,7 +21,7 @@ pushd     GeneratePackagesForLinuxUsingLlvmClang
 
 . /opt/intel/oneapi/setvars.sh
 
-cmake \
+/tools/cmake-3.30.2-linux-x86_64/bin/cmake \
     -G "Ninja" \
     -D CMAKE_C_COMPILER=clang \
     -D CMAKE_C_COMPILER_AR=llvm-ar \

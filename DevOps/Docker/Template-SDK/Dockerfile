@@ -39,7 +39,7 @@ RUN apt-get update \
 
 WORKDIR /tools
 
-RUN wget -c https://github.com/Kitware/CMake/releases/download/v3.30.0/cmake-3.30.0-linux-x86_64.tar.gz -O - | tar -xz -C .
+RUN wget -c https://github.com/Kitware/CMake/releases/download/v3.30.2/cmake-3.30.2-linux-x86_64.tar.gz -O - | tar -xz -C .
 
 WORKDIR /src
 
@@ -48,7 +48,7 @@ COPY ./Code ./Code
 WORKDIR /build
 
 RUN . /opt/intel/oneapi/setvars.sh \
- && /tools/cmake-3.30.0-linux-x86_64/bin/cmake \
+ && /tools/cmake-3.30.2-linux-x86_64/bin/cmake \
         -G "Ninja" \
         -D CMAKE_C_COMPILER=icx \
         -D CMAKE_C_COMPILER_AR=xiar \
