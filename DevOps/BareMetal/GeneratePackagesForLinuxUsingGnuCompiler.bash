@@ -24,9 +24,12 @@ pushd     GeneratePackagesForLinuxUsingGnuCompiler
 cmake \
     -G "Ninja" \
     -D CMAKE_C_COMPILER=gcc \
+    -D CMAKE_C_COMPILER_AR=ar \
     -D CMAKE_CXX_COMPILER=g++ \
+    -D CMAKE_CXX_COMPILER_AR=ar \
     -D CMAKE_BUILD_TYPE=Debug \
     -D PYBIND11_FINDPYTHON=ON \
+    -D TEMPLATE_SDK_VERSION=1.2.3 \
     ../../../Code
 
 ninja package

@@ -64,6 +64,7 @@ TARGET_LINK_LIBRARIES(
 SET_TARGET_PROPERTIES(
     Template-CPUStaticLibrary
         PROPERTIES
+            INTERPROCEDURAL_OPTIMIZATION ON
             OUTPUT_NAME ${PROJECT_NAME})
 
 # Let's define the shared version of the library.
@@ -106,6 +107,7 @@ TARGET_LINK_LIBRARIES(
 SET_TARGET_PROPERTIES(
     Template-CPUSharedLibrary
         PROPERTIES
+            INTERPROCEDURAL_OPTIMIZATION ON
             OUTPUT_NAME ${PROJECT_NAME}
             VERSION ${PROJECT_VERSION}
             SOVERSION ${PROJECT_VERSION_MAJOR})

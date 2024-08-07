@@ -51,7 +51,9 @@ RUN . /opt/intel/oneapi/setvars.sh \
  && /tools/cmake-3.30.0-linux-x86_64/bin/cmake \
         -G "Ninja" \
         -D CMAKE_C_COMPILER=icx \
+        -D CMAKE_C_COMPILER_AR=xiar \
         -D CMAKE_CXX_COMPILER=icpx \
+        -D CMAKE_CXX_COMPILER_AR=xiar \
         -D CMAKE_BUILD_TYPE=Release \
         -D PYBIND11_FINDPYTHON=ON \
         -D TEMPLATE_SDK_VERSION=${TEMPLATE_SDK_VERSION} \

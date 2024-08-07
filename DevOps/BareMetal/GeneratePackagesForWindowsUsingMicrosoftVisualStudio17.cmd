@@ -19,15 +19,19 @@ rmdir /s/q GeneratePackagesForWindowsUsingMicrosoftVisualStudio17
 mkdir      GeneratePackagesForWindowsUsingMicrosoftVisualStudio17
 pushd      GeneratePackagesForWindowsUsingMicrosoftVisualStudio17
 
+call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
 call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
 
 C:\Tools\cmake-3.30.0-windows-x86_64\bin\cmake.exe ^
     -G "Visual Studio 17 2022" ^
     -D CMAKE_C_COMPILER=cl ^
+    -D CMAKE_C_COMPILER_AR=lib ^
     -D CMAKE_CXX_COMPILER=cl ^
-    -D CMAKE_BUILD_TYPE=Debug ^
+    -D CMAKE_CXX_COMPILER_AR=lib ^
+    -D CMAKE_BUILD_TYPE=Release ^
     -D CMAKE_TOOLCHAIN_FILE=C:\Tools\VCPKG\scripts\buildsystems\vcpkg.cmake ^
     -D PYBIND11_FINDPYTHON=ON ^
+    -D TEMPLATE_SDK_VERSION=1.2.3 ^
     ..\..\..\Code
 
 msbuild -property:Configuration=Release Template-SDK.sln
