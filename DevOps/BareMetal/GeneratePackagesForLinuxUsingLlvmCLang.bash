@@ -24,9 +24,12 @@ pushd     GeneratePackagesForLinuxUsingLlvmClang
 cmake \
     -G "Ninja" \
     -D CMAKE_C_COMPILER=clang \
+    -D CMAKE_C_COMPILER_AR=llvm-ar \
     -D CMAKE_CXX_COMPILER=clang++ \
+    -D CMAKE_CXX_COMPILER_AR=llvm-ar \
     -D CMAKE_BUILD_TYPE=Debug \
     -D PYBIND11_FINDPYTHON=ON \
+    -D TEMPLATE_SDK_VERSION=1.2.3 \
     ../../../Code
 
 ninja package

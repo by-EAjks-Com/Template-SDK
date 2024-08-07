@@ -24,9 +24,12 @@ pushd     GeneratePackagesForLinuxUsingIntelOneApi
 cmake \
     -G "Ninja" \
     -D CMAKE_C_COMPILER=icx \
+    -D CMAKE_C_COMPILER_AR=xiar \
     -D CMAKE_CXX_COMPILER=icpx \
+    -D CMAKE_CXX_COMPILER_AR=xiar \
     -D CMAKE_BUILD_TYPE=Release \
     -D PYBIND11_FINDPYTHON=ON \
+    -D TEMPLATE_SDK_VERSION=1.2.3 \
     ../../../Code
 
 ninja package
