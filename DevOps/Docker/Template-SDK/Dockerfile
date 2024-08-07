@@ -49,14 +49,14 @@ WORKDIR /build
 
 RUN . /opt/intel/oneapi/setvars.sh \
  && /tools/cmake-3.30.0-linux-x86_64/bin/cmake \
-        -G "Unix Makefiles" \
+        -G "Ninja" \
         -D CMAKE_C_COMPILER=icx \
         -D CMAKE_CXX_COMPILER=icpx \
         -D CMAKE_BUILD_TYPE=Release \
         -D PYBIND11_FINDPYTHON=ON \
         -D TEMPLATE_SDK_VERSION=${TEMPLATE_SDK_VERSION} \
         /src/Code \
- && make package
+ && ninja package
 
 FROM ${IMAGE_REPOSITORY}/${RUNTIME_IMAGE_NAME}:${RUNTIME_IMAGE_TAG} AS deploy
 

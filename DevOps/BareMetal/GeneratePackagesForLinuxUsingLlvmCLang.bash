@@ -22,13 +22,13 @@ pushd     GeneratePackagesForLinuxUsingLlvmClang
 . /opt/intel/oneapi/setvars.sh
 
 cmake \
-    -G "Unix Makefiles" \
+    -G "Ninja" \
     -D CMAKE_C_COMPILER=clang \
     -D CMAKE_CXX_COMPILER=clang++ \
     -D CMAKE_BUILD_TYPE=Debug \
     -D PYBIND11_FINDPYTHON=ON \
     ../../../Code
 
-make package
+ninja package
 
 popd

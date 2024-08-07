@@ -31,6 +31,6 @@ C:\Tools\cmake-3.30.0-windows-x86_64\bin\cmake.exe ^
     -D PYBIND11_FINDPYTHON=ON ^
     ..\..\..\Code
 
-nmake package
+nninja package
 
 popd
