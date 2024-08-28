@@ -15,3 +15,43 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #include "byEAjksCom/Libraries/Template/CPU/ObjectBase.h"
+
+// Additional Template-SDK Headers
+#include "byEAjksCom/Libraries/Template/CPU/PrecompiledHeaders.h"
+
+// Dependency Headers
+#include <spdlog/spdlog.h>
+
+// Standard C++/STL Headers
+#include <memory>
+
+// Standard C-->C++ Headers
+#include <cmath>
+#include <cstdint>
+
+namespace byEAjksCom::Libraries::Template::CPU {
+
+ObjectBase::ObjectBase(
+    ::std::shared_ptr<::spdlog::logger> logger)
+noexcept
+:   logger(::std::move(logger))
+{
+    this->logger->debug("entering ObjectBase::CTOR()");
+}
+
+ObjectBase::~ObjectBase()
+noexcept
+{
+    this->logger->debug("entering ObjectBase::DTOR()");
+
+    this->logger = nullptr;
+}
+
+auto
+ObjectBase::Run()
+noexcept -> void
+{
+    this->logger->debug("entering ObjectBase::Run()");
+}
+
+} // byEAjksCom::Libraries::Template::CPU

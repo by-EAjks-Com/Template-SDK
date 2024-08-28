@@ -16,16 +16,16 @@
 
 #pragma once
 
-// Standard C-->C++ Headers
-#include <cmath>
-#include <cstdint>
+// Additional Template-SDK Headers
+
+// Dependency Headers
 
 // Standard C++/STL Headers
 #include <string>
 
-// Dependency Headers
-
-// Additional Template-SDK Headers
+// Standard C-->C++ Headers
+#include <cmath>
+#include <cstdint>
 
 namespace byEAjksCom::Libraries::Template::GPU {
 

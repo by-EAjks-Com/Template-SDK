@@ -16,22 +16,23 @@
 
 #include "byEAjksCom/Libraries/Template/GPU/DefaultObject.h"
 
-// Standard C-->C++ Headers
-#include <cassert>
-#include <cmath>
-#include <cstdint>
-
-// Standard C++/STL Headers
-#include <memory>
-
-// Nvidia CUDA Headers
-#include <cuda_runtime.h>
+// Additional Template-SDK Headers
+#include "byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectBase.h"
 
 // Dependency Headers
 #include <spdlog/spdlog.h>
 
-// Additional Template-SDK Headers
-#include "byEAjksCom/Libraries/Template/GPU/ObjectBase.h"
+// Nvidia CUDA Headers
+#include <cuda_runtime.h>
+
+// Standard C++/STL Headers
+#include <memory>
+
+// Standard C-->C++ Headers
+#include <cassert>
+#include <cmath>
+#include <cstdint>
 
 __global__
 void add(int n, float *x, float *y)
@@ -49,6 +50,7 @@ namespace byEAjksCom::Libraries::Template::GPU {
 
 DefaultObject::DefaultObject(
     ::std::shared_ptr<::spdlog::logger> logger)
+noexcept
 :   ObjectBase(::std::move(logger))
 {
     this->logger->debug("entering DefaultObject::CTOR()");
@@ -62,7 +64,7 @@ noexcept
 
 auto
 DefaultObject::Run()
--> void
+noexcept -> void
 {
     this->logger->debug("entering DefaultObject::Run()");
 

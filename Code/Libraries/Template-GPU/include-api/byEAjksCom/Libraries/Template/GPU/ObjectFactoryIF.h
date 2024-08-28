@@ -16,18 +16,19 @@
 
 #pragma once
 
-// Standard C-->C++ Headers
-#include <cmath>
-#include <cstdint>
+// Additional Template-SDK Headers
+#include "byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h"
+#include "byEAjksCom/Libraries/Template/GPU/PreprocessorMacros.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
+
+// Dependency Headers
 
 // Standard C++/STL Headers
 #include <memory>
 
-// Dependency Headers
-
-// Additional Template-SDK Headers
-#include "byEAjksCom/Libraries/Template/GPU/PreprocessorMacros.h"
-#include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
+// Standard C-->C++ Headers
+#include <cmath>
+#include <cstdint>
 
 namespace byEAjksCom::Libraries::Template::GPU {
 
@@ -39,13 +40,13 @@ public:
     /// @brief Constructs a new instance of the ObjectFactoryIF interface.
     explicit
     ObjectFactoryIF()
-    = default;
+    noexcept;
 
     /// Avoids implicit generation of the copy constructor.
     explicit
     ObjectFactoryIF(
         const ObjectFactoryIF & other)
-    = delete;
+    noexcept = delete;
 
     /// Avoids implicit generation of the move constructor.
     explicit
@@ -56,15 +57,13 @@ public:
     /// @brief Destructs the instance of the ObjectFactoryIF interface.
     virtual
     ~ObjectFactoryIF()
-    noexcept
-    {
-    }
+    noexcept;
 
     /// Avoids implicit generation of the copy assignment.
     auto
     operator=(
         const ObjectFactoryIF & other)
-    -> ObjectFactoryIF & = delete;
+    noexcept -> ObjectFactoryIF & = delete;
 
     /// Avoids implicit generation of the move assignment.
     auto
@@ -77,7 +76,7 @@ public:
     virtual
     auto
     CreateInstance()
-    -> ::std::unique_ptr<ObjectIF> = 0;
+    noexcept -> ::std::unique_ptr<ObjectIF> = 0;
 };
 
 } // byEAjksCom::Libraries::Template::GPU

@@ -14,17 +14,14 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#include "byEAjksCom/Libraries/Template/CPU/DefaultObject.h"
+#include "byEAjksCom/Libraries/Template/CPU/ObjectFactoryIF.h"
 
 // Additional Template-SDK Headers
 #include "byEAjksCom/Libraries/Template/CPU/PrecompiledHeaders.h"
-#include "byEAjksCom/Libraries/Template/CPU/ObjectBase.h"
 
 // Dependency Headers
-#include <spdlog/spdlog.h>
 
 // Standard C++/STL Headers
-#include <memory>
 
 // Standard C-->C++ Headers
 #include <cmath>
@@ -32,27 +29,10 @@
 
 namespace byEAjksCom::Libraries::Template::CPU {
 
-DefaultObject::DefaultObject(
-    ::std::shared_ptr<::spdlog::logger> logger)
-noexcept
-:   ObjectBase(::std::move(logger))
-{
-    this->logger->debug("entering DefaultObject::CTOR()");
-}
+ObjectFactoryIF::ObjectFactoryIF()
+noexcept = default;
 
-DefaultObject::~DefaultObject()
-noexcept
-{
-    this->logger->debug("entering DefaultObject::DTOR()");
-}
-
-auto
-DefaultObject::Run()
-noexcept -> void
-{
-    this->logger->debug("entering DefaultObject::Run()");
-
-    ObjectBase::Run();
-}
+ObjectFactoryIF::~ObjectFactoryIF()
+noexcept = default;
 
 } // byEAjksCom::Libraries::Template::CPU
