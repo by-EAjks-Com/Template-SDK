@@ -27,9 +27,13 @@ pushd     GeneratePackagesForLinuxUsingIntelOneApi
     -D CMAKE_C_COMPILER_AR=xiar \
     -D CMAKE_CXX_COMPILER=icpx \
     -D CMAKE_CXX_COMPILER_AR=xiar \
-    -D CMAKE_BUILD_TYPE=Release \
+    -D CMAKE_UNITY_BUILD=OFF \
+    -D CMAKE_BUILD_TYPE=Debug \
+    -D CMAKE_LINKER_TYPE=DEFAULT \
     -D PYBIND11_FINDPYTHON=ON \
     -D TEMPLATE_SDK_VERSION=1.2.3 \
+    -D USE_PRECOMPILED_HEADERS=ON \
+    -D BUILD_API_DOCUMENTATION=OFF \
     ../../../Code
 
 ninja package

@@ -27,6 +27,12 @@ PYBIND11_ADD_MODULE(
             ${Template_GPUPythonBindingHeaders}
             ${Template_GPUPythonBindingSources})
 
+IF(${USE_PRECOMPILED_HEADERS})
+    TARGET_PRECOMPILE_HEADERS(
+        Template_GPUPythonBinding
+            PRIVATE ${PROJECT_SOURCE_DIR}/src/PrecompiledHeaders.h)
+ENDIF()
+
 TARGET_COMPILE_DEFINITIONS(
     Template_GPUPythonBinding
         PRIVATE $<$<CONFIG:Debug>:SPDLOG_DEBUG_ON>

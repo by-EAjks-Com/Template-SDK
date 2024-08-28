@@ -41,6 +41,12 @@ TARGET_INCLUDE_DIRECTORIES(
         PUBLIC    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
         PRIVATE   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>)
 
+IF(${USE_PRECOMPILED_HEADERS})
+    TARGET_PRECOMPILE_HEADERS(
+        Template-CPUStaticLibrary
+            PRIVATE   ${PROJECT_SOURCE_DIR}/include-api/byEAjksCom/Libraries/Template/CPU/PrecompiledHeaders.h)
+ENDIF()
+
 TARGET_COMPILE_DEFINITIONS(
     Template-CPUStaticLibrary
         PUBLIC    TEMPLATE_CPU_LIBRARY_IS_STATIC
@@ -65,6 +71,8 @@ SET_TARGET_PROPERTIES(
     Template-CPUStaticLibrary
         PROPERTIES
             INTERPROCEDURAL_OPTIMIZATION ON
+            CXX_VISIBILITY_PRESET default
+            VISIBILITY_INLINES_HIDDEN ON
             OUTPUT_NAME ${PROJECT_NAME})
 
 # Let's define the shared version of the library.
@@ -108,6 +116,8 @@ SET_TARGET_PROPERTIES(
     Template-CPUSharedLibrary
         PROPERTIES
             INTERPROCEDURAL_OPTIMIZATION ON
+            CXX_VISIBILITY_PRESET default
+            VISIBILITY_INLINES_HIDDEN ON
             OUTPUT_NAME ${PROJECT_NAME}
             VERSION ${PROJECT_VERSION}
             SOVERSION ${PROJECT_VERSION_MAJOR})

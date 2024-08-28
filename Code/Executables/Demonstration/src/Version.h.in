@@ -16,12 +16,12 @@
 
 #pragma once
 
+// Standard C++/STL Headers
+#include <string>
+
 // Standard C-->C++ Headers
 #include <cmath>
 #include <cstdint>
-
-// Standard C++/STL Headers
-#include <string>
 
 const ::std::string EXECUTABLE_NAME { "@PROJECT_NAME@" };
 const ::std::string EXECUTABLE_VERSION { "@PROJECT_VERSION@" };

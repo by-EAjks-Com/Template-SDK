@@ -16,15 +16,22 @@
 
 #pragma once
 
+// Additional Template-SDK Headers
+
+// Dependency Headers
+#include <pybind11/pybind11.h>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+
 // Standard C++/STL Headers
+#include <algorithm>
+#include <filesystem>
+#include <iostream>
+#include <memory>
 #include <string>
+#include <unordered_map>
+#include <vector>
 
 // Standard C-->C++ Headers
 #include <cmath>
 #include <cstdint>
-
-const ::std::string EXECUTABLE_NAME { "@PROJECT_NAME@" };
-const ::std::string EXECUTABLE_VERSION { "@PROJECT_VERSION@" };
-const uint32_t EXECUTABLE_VERSION_MAJOR { @PROJECT_VERSION_MAJOR@ };
-const uint32_t EXECUTABLE_VERSION_MINOR { @PROJECT_VERSION_MINOR@ };
-const uint32_t EXECUTABLE_VERSION_PATCH { @PROJECT_VERSION_PATCH@ };

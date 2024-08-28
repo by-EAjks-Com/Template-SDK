@@ -14,22 +14,23 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-// Standard C-->C++ Headers
-#include <cmath>
-#include <cstdint>
-
-// Standard C++/STL Headers
-#include <memory>
+// Additional Template-SDK Headers
+#include "PrecompiledHeaders.h"
+#include "byEAjksCom/Libraries/Template/GPU/Version.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectFactory.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
 
 // Dependency Headers
 #include <pybind11/pybind11.h>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
-// Additional Template-SDK Headers
-#include "byEAjksCom/Libraries/Template/GPU/Version.h"
-#include "byEAjksCom/Libraries/Template/GPU/ObjectFactory.h"
-#include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
+// Standard C++/STL Headers
+#include <memory>
+
+// Standard C-->C++ Headers
+#include <cmath>
+#include <cstdint>
 
 namespace GPU = ::byEAjksCom::Libraries::Template::GPU;
 
