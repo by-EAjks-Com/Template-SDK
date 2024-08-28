@@ -14,10 +14,10 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#include "byEAjksCom/Libraries/Template/CPU/ObjectIF.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
 
 // Additional Template-SDK Headers
-#include "byEAjksCom/Libraries/Template/CPU/PrecompiledHeaders.h"
+#include "byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h"
 
 // Dependency Headers
 
@@ -27,7 +27,7 @@
 #include <cmath>
 #include <cstdint>
 
-namespace byEAjksCom::Libraries::Template::CPU {
+namespace byEAjksCom::Libraries::Template::GPU {
 
 ObjectIF::ObjectIF()
 noexcept = default;
@@ -35,4 +35,4 @@ noexcept = default;
 ObjectIF::~ObjectIF()
 noexcept = default;
 
-} // byEAjksCom::Libraries::Template::CPU
+} // byEAjksCom::Libraries::Template::GPU
