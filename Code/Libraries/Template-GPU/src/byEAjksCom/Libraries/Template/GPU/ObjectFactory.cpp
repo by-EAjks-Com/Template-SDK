@@ -16,24 +16,26 @@
 
 #include "byEAjksCom/Libraries/Template/GPU/ObjectFactory.h"
 
-// Standard C-->C++ Headers
-#include <cmath>
-#include <cstdint>
-
-// Standard C++/STL Headers
-#include <memory>
+// Additional Template-SDK Headers
+#include "byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h"
+#include "byEAjksCom/Libraries/Template/GPU/DefaultObject.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
 
 // Dependency Headers
 #include <spdlog/spdlog.h>
 
-// Additional Template-SDK Headers
-#include "byEAjksCom/Libraries/Template/GPU/DefaultObject.h"
-#include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
+// Standard C++/STL Headers
+#include <memory>
+
+// Standard C-->C++ Headers
+#include <cmath>
+#include <cstdint>
 
 namespace byEAjksCom::Libraries::Template::GPU {
 
 ObjectFactory::ObjectFactory(
     ::std::shared_ptr<::spdlog::logger> logger)
+noexcept
 :   logger { ::std::move(logger) }
 {
     this->logger->debug("entering ObjectFactory::CTOR()");
@@ -49,7 +51,7 @@ noexcept
 
 auto
 ObjectFactory::CreateInstance()
--> ::std::unique_ptr<ObjectIF>
+noexcept -> ::std::unique_ptr<ObjectIF>
 {
     this->logger->debug("entering ObjectFactory::CreateInstance()");
 

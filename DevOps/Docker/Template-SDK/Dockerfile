@@ -52,9 +52,13 @@ RUN . /opt/intel/oneapi/setvars.sh \
         -D CMAKE_C_COMPILER_AR=xiar \
         -D CMAKE_CXX_COMPILER=icpx \
         -D CMAKE_CXX_COMPILER_AR=xiar \
+        -D CMAKE_UNITY_BUILD=OFF \
         -D CMAKE_BUILD_TYPE=Release \
+        -D CMAKE_LINKER_TYPE=DEFAULT \
         -D PYBIND11_FINDPYTHON=ON \
         -D TEMPLATE_SDK_VERSION=${TEMPLATE_SDK_VERSION} \
+        -D USE_PRECOMPILED_HEADERS=OFF \
+        -D BUILD_API_DOCUMENTATION=ON \
         /src/Code \
  && ninja package
 

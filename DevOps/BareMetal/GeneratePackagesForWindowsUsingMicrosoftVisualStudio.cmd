@@ -15,9 +15,9 @@
 ::  You should have received a copy of the GNU General Public License
 ::  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-rmdir /s/q GeneratePackagesForWindowsUsingMicrosoftVisualStudio17
-mkdir      GeneratePackagesForWindowsUsingMicrosoftVisualStudio17
-pushd      GeneratePackagesForWindowsUsingMicrosoftVisualStudio17
+rmdir /s/q GeneratePackagesForWindowsUsingMicrosoftVisualStudio
+mkdir      GeneratePackagesForWindowsUsingMicrosoftVisualStudio
+pushd      GeneratePackagesForWindowsUsingMicrosoftVisualStudio
 
 call "C:\Program Files (x86)\Intel\oneAPI\setvars.bat"
 call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
@@ -28,10 +28,14 @@ C:\Tools\cmake-3.30.2-windows-x86_64\bin\cmake.exe ^
     -D CMAKE_C_COMPILER_AR=lib ^
     -D CMAKE_CXX_COMPILER=cl ^
     -D CMAKE_CXX_COMPILER_AR=lib ^
+    -D CMAKE_UNITY_BUILD=ON ^
     -D CMAKE_BUILD_TYPE=Release ^
-    -D CMAKE_TOOLCHAIN_FILE=C:\Tools\VCPKG\scripts\buildsystems\vcpkg.cmake ^
+    -D CMAKE_LINKER_TYPE=DEFAULT ^
     -D PYBIND11_FINDPYTHON=ON ^
+    -D CMAKE_TOOLCHAIN_FILE=C:\Tools\VCPKG\scripts\buildsystems\vcpkg.cmake ^
     -D TEMPLATE_SDK_VERSION=1.2.3 ^
+    -D USE_PRECOMPILED_HEADERS=ON ^
+    -D BUILD_API_DOCUMENTATION=OFF ^
     ..\..\..\Code
 
 msbuild -property:Configuration=Release Template-SDK.sln

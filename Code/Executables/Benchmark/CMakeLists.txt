@@ -34,6 +34,12 @@ TARGET_INCLUDE_DIRECTORIES(
         PRIVATE ${PROJECT_BINARY_DIR}/src
         PRIVATE ${PROJECT_SOURCE_DIR}/src)
 
+IF(${USE_PRECOMPILED_HEADERS})
+    TARGET_PRECOMPILE_HEADERS(
+        BenchmarkExecutable
+            PRIVATE ${PROJECT_SOURCE_DIR}/src/PrecompiledHeaders.h)
+ENDIF()
+
 TARGET_COMPILE_OPTIONS(
     BenchmarkExecutable
         PRIVATE $<$<AND:$<CXX_COMPILER_ID:IntelLLVM>,$<COMPILE_LANGUAGE:CXX>>:-Wno-tautological-constant-compare>)
@@ -48,6 +54,9 @@ TARGET_LINK_LIBRARIES(
 SET_TARGET_PROPERTIES(
     BenchmarkExecutable
         PROPERTIES
+            INTERPROCEDURAL_OPTIMIZATION ON
+            CXX_VISIBILITY_PRESET default
+            VISIBILITY_INLINES_HIDDEN ON
             OUTPUT_NAME ${PROJECT_NAME})
 
 IF(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Windows")

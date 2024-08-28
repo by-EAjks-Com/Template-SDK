@@ -14,21 +14,8 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-// Standard C-->C++ Headers
-#include <cmath>
-#include <cstdint>
-
-// Standard C++/STL Headers
-#include <memory>
-#include <string>
-
-// Dependency Headers
-#include <CLI/CLI.hpp>
-#include <spdlog/spdlog.h>
-#include <spdlog/sinks/basic_file_sink.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
-
 // Additional Template-SDK Headers
+#include "PrecompiledHeaders.h"
 #include "Version.h"
 #include "byEAjksCom/Libraries/Template/CPU/ObjectFactory.h"
 #include "byEAjksCom/Libraries/Template/CPU/ObjectFactoryIF.h"
@@ -36,6 +23,20 @@
 #include "byEAjksCom/Libraries/Template/GPU/ObjectFactory.h"
 #include "byEAjksCom/Libraries/Template/GPU/ObjectFactoryIF.h"
 #include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
+
+// Dependency Headers
+#include <CLI/CLI.hpp>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+
+// Standard C++/STL Headers
+#include <memory>
+#include <string>
+
+// Standard C-->C++ Headers
+#include <cmath>
+#include <cstdint>
 
 namespace CPU = ::byEAjksCom::Libraries::Template::CPU;
 namespace GPU = ::byEAjksCom::Libraries::Template::GPU;

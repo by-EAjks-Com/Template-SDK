@@ -16,20 +16,21 @@
 
 #pragma once
 
-// Standard C-->C++ Headers
-#include <cmath>
-#include <cstdint>
-
-// Standard C++/STL Headers
-#include <memory>
+// Additional Template-SDK Headers
+#include "byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h"
+#include "byEAjksCom/Libraries/Template/GPU/PreprocessorMacros.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectFactoryIF.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
 
 // Dependency Headers
 #include <spdlog/spdlog.h>
 
-// Additional Template-SDK Headers
-#include "byEAjksCom/Libraries/Template/GPU/PreprocessorMacros.h"
-#include "byEAjksCom/Libraries/Template/GPU/ObjectFactoryIF.h"
-#include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
+// Standard C++/STL Headers
+#include <memory>
+
+// Standard C-->C++ Headers
+#include <cmath>
+#include <cstdint>
 
 namespace byEAjksCom::Libraries::Template::GPU {
 
@@ -43,13 +44,14 @@ public:
     /// @param[in] logger The SpdLog logger used by the calling function.
     explicit
     ObjectFactory(
-        ::std::shared_ptr<::spdlog::logger> logger);
+        ::std::shared_ptr<::spdlog::logger> logger)
+    noexcept;
 
     /// Avoids implicit generation of the copy constructor.
     explicit
     ObjectFactory(
         const ObjectFactory & other)
-    = delete;
+    noexcept = delete;
 
     /// Avoids implicit generation of the move constructor.
     explicit
@@ -66,7 +68,7 @@ public:
     auto
     operator=(
         const ObjectFactory & other)
-    -> ObjectFactory & = delete;
+    noexcept -> ObjectFactory & = delete;
 
     /// Avoids implicit generation of the move assignment.
     auto
@@ -79,7 +81,7 @@ public:
     virtual
     auto
     CreateInstance()
-    -> ::std::unique_ptr<ObjectIF> override final;
+    noexcept -> ::std::unique_ptr<ObjectIF> override final;
 
 protected:
 

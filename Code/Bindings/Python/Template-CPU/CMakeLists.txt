@@ -27,6 +27,12 @@ PYBIND11_ADD_MODULE(
             ${Template_CPUPythonBindingHeaders}
             ${Template_CPUPythonBindingSources})
 
+IF(${USE_PRECOMPILED_HEADERS})
+    TARGET_PRECOMPILE_HEADERS(
+        Template_CPUPythonBinding
+            PRIVATE ${PROJECT_SOURCE_DIR}/src/PrecompiledHeaders.h)
+ENDIF()
+
 TARGET_COMPILE_DEFINITIONS(
     Template_CPUPythonBinding
         PRIVATE $<$<CONFIG:Debug>:SPDLOG_DEBUG_ON>

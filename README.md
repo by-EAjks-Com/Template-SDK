@@ -89,9 +89,13 @@ wget -c https://github.com/Kitware/CMake/releases/download/v3.30.2/cmake-3.30.2-
     -D CMAKE_C_COMPILER_AR=ar \
     -D CMAKE_CXX_COMPILER=g++ \
     -D CMAKE_CXX_COMPILER_AR=ar \
+    -D CMAKE_UNITY_BUILD=OFF \
     -D CMAKE_BUILD_TYPE=Debug \
+    -D CMAKE_LINKER_TYPE=DEFAULT \
     -D PYBIND11_FINDPYTHON=ON \
     -D TEMPLATE_SDK_VERSION=1.2.3 \
+    -D USE_PRECOMPILED_HEADERS=OFF \
+    -D BUILD_API_DOCUMENTATION=ON \
     /src/Code
 
 ninja package
@@ -108,9 +112,13 @@ ninja package
     -D CMAKE_C_COMPILER_AR=llvm-ar \
     -D CMAKE_CXX_COMPILER=clang++ \
     -D CMAKE_CXX_COMPILER_AR=llvm-ar \
+    -D CMAKE_UNITY_BUILD=OFF \
     -D CMAKE_BUILD_TYPE=Debug \
+    -D CMAKE_LINKER_TYPE=DEFAULT \
     -D PYBIND11_FINDPYTHON=ON \
     -D TEMPLATE_SDK_VERSION=1.2.3 \
+    -D USE_PRECOMPILED_HEADERS=ON \
+    -D BUILD_API_DOCUMENTATION=OFF \
     /src/Code
 
 ninja package
@@ -127,9 +135,13 @@ ninja package
     -D CMAKE_C_COMPILER_AR=xiar \
     -D CMAKE_CXX_COMPILER=icpx \
     -D CMAKE_CXX_COMPILER_AR=xiar \
+    -D CMAKE_UNITY_BUILD=ON \
     -D CMAKE_BUILD_TYPE=Release \
+    -D CMAKE_LINKER_TYPE=DEFAULT \
     -D PYBIND11_FINDPYTHON=ON \
     -D TEMPLATE_SDK_VERSION=1.2.3 \
+    -D USE_PRECOMPILED_HEADERS=ON \
+    -D BUILD_API_DOCUMENTATION=OFF \
     /src/Code
 
 ninja package

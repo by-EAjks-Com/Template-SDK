@@ -16,19 +16,20 @@
 
 #pragma once
 
-// Standard C-->C++ Headers
-#include <cmath>
-#include <cstdint>
-
-// Standard C++/STL Headers
-#include <memory>
+// Additional Template-SDK Headers
+#include "byEAjksCom/Libraries/Template/CPU/PrecompiledHeaders.h"
+#include "byEAjksCom/Libraries/Template/CPU/PreprocessorMacros.h"
+#include "byEAjksCom/Libraries/Template/CPU/ObjectBase.h"
 
 // Dependency Headers
 #include <spdlog/spdlog.h>
 
-// Additional Template-SDK Headers
-#include "byEAjksCom/Libraries/Template/CPU/PreprocessorMacros.h"
-#include "byEAjksCom/Libraries/Template/CPU/ObjectBase.h"
+// Standard C++/STL Headers
+#include <memory>
+
+// Standard C-->C++ Headers
+#include <cmath>
+#include <cstdint>
 
 namespace byEAjksCom::Libraries::Template::CPU {
 
@@ -43,16 +44,13 @@ public:
     explicit
     DefaultObject(
         ::std::shared_ptr<::spdlog::logger> logger)
-    :   ObjectBase(::std::move(logger))
-    {
-        this->logger->debug("entering DefaultObject::CTOR()");
-    }
+    noexcept;
 
     /// Avoids implicit generation of the copy constructor.
     explicit
     DefaultObject(
         const DefaultObject & other)
-    = delete;
+    noexcept = delete;
 
     /// Avoids implicit generation of the move constructor.
     explicit
@@ -63,16 +61,13 @@ public:
     /// @brief Destructs the instance of the DefaultObject class.
     virtual
     ~DefaultObject()
-    noexcept
-    {
-        this->logger->debug("entering DefaultObject::DTOR()");
-    }
+    noexcept;
 
     /// Avoids implicit generation of the copy assignment.
     auto
     operator=(
         const DefaultObject & other)
-    -> DefaultObject & = delete;
+    noexcept -> DefaultObject & = delete;
 
     /// Avoids implicit generation of the move assignment.
     auto
@@ -84,12 +79,7 @@ public:
     virtual
     auto
     Run()
-    -> void override final
-    {
-        this->logger->debug("entering DefaultObject::Run()");
-
-        ObjectBase::Run();
-    }
+    noexcept -> void override final;
 };
 
 } // byEAjksCom::Libraries::Template::CPU

@@ -41,6 +41,12 @@ TARGET_INCLUDE_DIRECTORIES(
         PUBLIC    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
         PRIVATE   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>)
 
+IF(${USE_PRECOMPILED_HEADERS})
+    TARGET_PRECOMPILE_HEADERS(
+        Template-GPUStaticLibrary
+            PRIVATE   ${PROJECT_SOURCE_DIR}/include-api/byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h)
+ENDIF()
+
 TARGET_COMPILE_DEFINITIONS(
     Template-GPUStaticLibrary
         PUBLIC    TEMPLATE_GPU_LIBRARY_IS_STATIC
@@ -69,6 +75,8 @@ SET_TARGET_PROPERTIES(
             CUDA_SEPARABLE_COMPILATION ON
             INTERPROCEDURAL_OPTIMIZATION ON
             POSITION_INDEPENDENT_CODE ON
+            CXX_VISIBILITY_PRESET default
+            VISIBILITY_INLINES_HIDDEN ON
             OUTPUT_NAME ${PROJECT_NAME})
 
 
@@ -88,6 +96,12 @@ TARGET_INCLUDE_DIRECTORIES(
         PUBLIC    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include-api>
         PUBLIC    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
         PRIVATE   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>)
+
+IF(${USE_PRECOMPILED_HEADERS})
+    TARGET_PRECOMPILE_HEADERS(
+        Template-GPUSharedLibrary
+            PRIVATE   ${PROJECT_SOURCE_DIR}/include-api/byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h)
+ENDIF()
 
 TARGET_COMPILE_DEFINITIONS(
     Template-GPUSharedLibrary
@@ -117,6 +131,8 @@ SET_TARGET_PROPERTIES(
             CUDA_SEPARABLE_COMPILATION ON
             INTERPROCEDURAL_OPTIMIZATION ON
             POSITION_INDEPENDENT_CODE ON
+            CXX_VISIBILITY_PRESET default
+            VISIBILITY_INLINES_HIDDEN ON
             OUTPUT_NAME ${PROJECT_NAME}
             VERSION ${PROJECT_VERSION}
             SOVERSION ${PROJECT_VERSION_MAJOR})
@@ -150,35 +166,39 @@ INSTALL(
         DESTINATION bin
         COMPONENT runtime)
 
-IF(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
+IF(${BUILD_API_DOCUMENTATION})
 
-    # Let's generate the API documentation of the library,
-    # and define where the generated API documentation is installed.
+    IF(${CMAKE_HOST_SYSTEM_NAME} STREQUAL "Linux")
 
-    FIND_PACKAGE(Doxygen REQUIRED)
+        # Let's generate the API documentation of the library,
+        # and define where the generated API documentation is installed.
 
-    CONFIGURE_FILE(
-        ${PROJECT_SOURCE_DIR}/doc/api/Doxyfile.in
-        ${PROJECT_BINARY_DIR}/doc/api/Doxyfile
-        @ONLY)
+        FIND_PACKAGE(Doxygen REQUIRED)
 
-    ADD_CUSTOM_COMMAND(
-        COMMENT "Creating HTML documentation"
-        DEPENDS ${PROJECT_SOURCE_DIR}/doc/api/Doxyfile.in
-                ${Template-GPULibraryHeaders}
-                ${Template-GPULibrarySources}
-        OUTPUT  ${PROJECT_BINARY_DIR}/doc/api/html/index.html
-        COMMAND ${DOXYGEN_EXECUTABLE} ARGS ${PROJECT_BINARY_DIR}/doc/api/Doxyfile
-        WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/doc/api)
+        CONFIGURE_FILE(
+            ${PROJECT_SOURCE_DIR}/doc/api/Doxyfile.in
+            ${PROJECT_BINARY_DIR}/doc/api/Doxyfile
+            @ONLY)
 
-    ADD_CUSTOM_TARGET(
-        Template-GPUApiDocumentation ALL
-            DEPENDS ${PROJECT_BINARY_DIR}/doc/api/html/index.html
-            VERBATIM)
+        ADD_CUSTOM_COMMAND(
+            COMMENT "Creating HTML documentation"
+            DEPENDS ${PROJECT_SOURCE_DIR}/doc/api/Doxyfile.in
+                    ${Template-GPULibraryHeaders}
+                    ${Template-GPULibrarySources}
+            OUTPUT  ${PROJECT_BINARY_DIR}/doc/api/html/index.html
+            COMMAND ${DOXYGEN_EXECUTABLE} ARGS ${PROJECT_BINARY_DIR}/doc/api/Doxyfile
+            WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/doc/api)
 
-    INSTALL(
-        DIRECTORY ${PROJECT_BINARY_DIR}/doc/api/html
-        DESTINATION doc/api/byEAjksCom/Libraries/Template/GPU
-        COMPONENT sdk)
+        ADD_CUSTOM_TARGET(
+            Template-GPUApiDocumentation ALL
+                DEPENDS ${PROJECT_BINARY_DIR}/doc/api/html/index.html
+                VERBATIM)
+
+        INSTALL(
+            DIRECTORY ${PROJECT_BINARY_DIR}/doc/api/html
+            DESTINATION doc/api/byEAjksCom/Libraries/Template/GPU
+            COMPONENT sdk)
+
+    ENDIF()
 
 ENDIF()

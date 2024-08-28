@@ -16,19 +16,20 @@
 
 #pragma once
 
-// Standard C-->C++ Headers
-#include <cmath>
-#include <cstdint>
-
-// Standard C++/STL Headers
-#include <memory>
+// Additional Template-SDK Headers
+#include "byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h"
+#include "byEAjksCom/Libraries/Template/GPU/PreprocessorMacros.h"
+#include "byEAjksCom/Libraries/Template/GPU/ObjectBase.h"
 
 // Dependency Headers
 #include <spdlog/spdlog.h>
 
-// Additional Template-SDK Headers
-#include "byEAjksCom/Libraries/Template/GPU/PreprocessorMacros.h"
-#include "byEAjksCom/Libraries/Template/GPU/ObjectBase.h"
+// Standard C++/STL Headers
+#include <memory>
+
+// Standard C-->C++ Headers
+#include <cmath>
+#include <cstdint>
 
 namespace byEAjksCom::Libraries::Template::GPU {
 
@@ -42,13 +43,14 @@ public:
     /// @param[in] logger The SpdLog logger used by the calling function.
     explicit
     DefaultObject(
-        ::std::shared_ptr<::spdlog::logger> logger);
+        ::std::shared_ptr<::spdlog::logger> logger)
+    noexcept;
 
     /// Avoids implicit generation of the copy constructor.
     explicit
     DefaultObject(
         const DefaultObject & other)
-    = delete;
+    noexcept = delete;
 
     /// Avoids implicit generation of the move constructor.
     explicit
@@ -65,7 +67,7 @@ public:
     auto
     operator=(
         const DefaultObject & other)
-    -> DefaultObject & = delete;
+    noexcept -> DefaultObject & = delete;
 
     /// Avoids implicit generation of the move assignment.
     auto
@@ -77,7 +79,7 @@ public:
     virtual
     auto
     Run()
-    -> void override final;
+    noexcept -> void override final;
 };
 
 } // byEAjksCom::Libraries::Template::GPU
