@@ -14,7 +14,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-// Additional Template-SDK Headers
+// First-Party Headers
 #include "PrecompiledHeaders.h"
 #include "Version.h"
 #include "byEAjksCom/Libraries/Template/CPU/ObjectFactory.h"
@@ -24,7 +24,7 @@
 #include "byEAjksCom/Libraries/Template/GPU/ObjectFactoryIF.h"
 #include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
 
-// Dependency Headers
+// Third-Party Headers
 #include <CLI/CLI.hpp>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
@@ -49,101 +49,83 @@ main(
     int argc,
     char ** argv)
 {
-    ::CLI::App app { EXECUTABLE_NAME + ", v" + EXECUTABLE_VERSION };
-
-    int32_t verbosityLevel { 0 };
-
-    app.add_flag(
-        "-v,--verbose",
-        verbosityLevel,
-        "Sets the verbosity level");
-
-    bool logToFile { false };
-
-    app.add_flag(
-        "--log,!--no-log",
-        logToFile,
-        "Creates a log file.");
-
-    ::std::string logFileName { EXECUTABLE_NAME + ".log" };
-
-    app.add_option(
-        "--log-to",
-        logFileName,
-        "Sets the log file name.");
-
-    try
-    {
-        app.parse(argc, argv);
-    }
-    catch (const ::CLI::ParseError & exception)
-    {
-        return app.exit(exception);
-    }
-
     ::std::shared_ptr<::spdlog::logger>
     logger { ::std::make_shared<::spdlog::logger>(EXECUTABLE_NAME) };
     logger->flush_on(::spdlog::level::err);
     logger->set_level(::spdlog::level::trace);
     ::spdlog::register_logger(logger);
 
-    {
-        ::spdlog::sink_ptr
-        sink { ::std::make_shared<::spdlog::sinks::stdout_color_sink_mt>() };
-        sink->set_pattern("%^[%L] %v%$");
-        logger->sinks().push_back(sink);
-
-        switch (verbosityLevel)
-        {
-            case  0: sink->set_level(::spdlog::level::warn);  break;
-            case  1: sink->set_level(::spdlog::level::info);  break;
-            case  2: sink->set_level(::spdlog::level::debug); break;
-            default: sink->set_level(::spdlog::level::trace); break;
-        }
-    }
-
-    if (logToFile == true)
-    {
-        ::spdlog::sink_ptr
-        sink { ::std::make_shared<::spdlog::sinks::basic_file_sink_mt>(logFileName) };
-        sink->set_pattern("[%T.%F] %l: %v (%n)");
-        logger->sinks().push_back(sink);
-
-        switch (verbosityLevel)
-        {
-            case  0: sink->set_level(::spdlog::level::info);  break;
-            case  1: sink->set_level(::spdlog::level::info);  break;
-            case  2: sink->set_level(::spdlog::level::debug); break;
-            default: sink->set_level(::spdlog::level::trace); break;
-        }
-    }
+    ::spdlog::sink_ptr
+    sink { ::std::make_shared<::spdlog::sinks::stdout_color_sink_mt>() };
+    sink->set_pattern("%^[%L] %v%$");
+    sink->set_level(::spdlog::level::info);
+    logger->sinks().push_back(sink);
 
     try
     {
+        ::CLI::App
+        cliParser { EXECUTABLE_NAME + ", v" + EXECUTABLE_VERSION };
+
+        cliParser.add_flag_function(
+            "-v,--verbose",
+            [logger](
+                int32_t verbosityLevel)
+            {
+                switch (verbosityLevel)
+                {
+                    case  0: logger->set_level(::spdlog::level::info);  break;
+                    case  1: logger->set_level(::spdlog::level::debug); break;
+                    default: logger->set_level(::spdlog::level::trace); break;
+                }
+            },
+            "Sets the verbosity level");
+
+        cliParser.add_option_function<::std::string>(
+            "--log-to",
+            [logger](
+                ::std::string logFileName)
+            {
+                ::spdlog::sink_ptr
+                sink { ::std::make_shared<::spdlog::sinks::basic_file_sink_mt>(logFileName) };
+                sink->set_pattern("[%T.%F] %l: %v (%n)");
+                sink->set_level(::spdlog::level::trace);
+                logger->sinks().push_back(sink);
+            },
+            "Saves the logs into a file.");
+
+        try
+        {
+            cliParser.parse(argc, argv);
+        }
+        catch (const ::CLI::ParseError & exception)
+        {
+            return cliParser.exit(exception);
+        }
+
         logger->info("starting {}, v{}", EXECUTABLE_NAME, EXECUTABLE_VERSION);
 
         ::std::unique_ptr<CPU::ObjectFactoryIF>
-        factoryCPU { ::std::make_unique<CPU::ObjectFactory>(logger) };
+        cpuObjectFactory { ::std::make_unique<CPU::ObjectFactory>(logger) };
 
         ::std::unique_ptr<CPU::ObjectIF>
-        instanceCPU { factoryCPU->CreateInstance() };
+        cpuObject { cpuObjectFactory->CreateInstance() };
 
-        instanceCPU->Run();
+        cpuObject->Run();
 
         ::std::unique_ptr<GPU::ObjectFactoryIF>
-        factoryGPU { ::std::make_unique<GPU::ObjectFactory>(logger) };
+        gpuObjectFactory { ::std::make_unique<GPU::ObjectFactory>(logger) };
 
         ::std::unique_ptr<GPU::ObjectIF>
-        instanceGPU { factoryGPU->CreateInstance() };
+        gpuObject { gpuObjectFactory->CreateInstance() };
 
-        instanceGPU->Run();
+        gpuObject->Run();
 
         logger->info("finished successfully");
         logger->flush();
 
         return (0);
     }
-    catch(const ::std::exception & exception)
+    catch (const ::std::exception & exception)
     {
         logger->error(exception.what());
         logger->info("finished prematurely with error(s)");

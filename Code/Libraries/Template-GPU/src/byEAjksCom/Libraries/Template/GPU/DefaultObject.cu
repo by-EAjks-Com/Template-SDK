@@ -16,11 +16,11 @@
 
 #include "byEAjksCom/Libraries/Template/GPU/DefaultObject.h"
 
-// Additional Template-SDK Headers
+// First-Party Headers
 #include "byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h"
 #include "byEAjksCom/Libraries/Template/GPU/ObjectBase.h"
 
-// Dependency Headers
+// Third-Party Headers
 #include <spdlog/spdlog.h>
 
 // Nvidia CUDA Headers

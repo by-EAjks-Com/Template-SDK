@@ -16,12 +16,12 @@
 
 #pragma once
 
-// Additional Template-SDK Headers
+// First-Party Headers
 #include "byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h"
 #include "byEAjksCom/Libraries/Template/GPU/PreprocessorMacros.h"
 #include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
 
-// Dependency Headers
+// Third-Party Headers
 #include <spdlog/spdlog.h>
 
 // Standard C++/STL Headers

@@ -16,9 +16,9 @@
 
 #pragma once
 
-// Additional Template-SDK Headers
+// First-Party Headers
 
-// Dependency Headers
+// Third-Party Headers
 #include <spdlog/spdlog.h>
 
 // Standard C++/STL Headers

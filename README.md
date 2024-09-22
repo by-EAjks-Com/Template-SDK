@@ -93,7 +93,7 @@ wget -c https://github.com/Kitware/CMake/releases/download/v3.30.2/cmake-3.30.2-
     -D CMAKE_BUILD_TYPE=Debug \
     -D CMAKE_LINKER_TYPE=DEFAULT \
     -D PYBIND11_FINDPYTHON=ON \
-    -D TEMPLATE_SDK_VERSION=1.2.3 \
+    -D TEMPLATE_SDK_VERSION=1.2.3.4 \
     -D USE_PRECOMPILED_HEADERS=OFF \
     -D BUILD_API_DOCUMENTATION=ON \
     /src/Code
@@ -116,7 +116,7 @@ ninja package
     -D CMAKE_BUILD_TYPE=Debug \
     -D CMAKE_LINKER_TYPE=DEFAULT \
     -D PYBIND11_FINDPYTHON=ON \
-    -D TEMPLATE_SDK_VERSION=1.2.3 \
+    -D TEMPLATE_SDK_VERSION=1.2.3.4 \
     -D USE_PRECOMPILED_HEADERS=ON \
     -D BUILD_API_DOCUMENTATION=OFF \
     /src/Code
@@ -139,7 +139,7 @@ ninja package
     -D CMAKE_BUILD_TYPE=Release \
     -D CMAKE_LINKER_TYPE=DEFAULT \
     -D PYBIND11_FINDPYTHON=ON \
-    -D TEMPLATE_SDK_VERSION=1.2.3 \
+    -D TEMPLATE_SDK_VERSION=1.2.3.4 \
     -D USE_PRECOMPILED_HEADERS=ON \
     -D BUILD_API_DOCUMENTATION=OFF \
     /src/Code
@@ -150,7 +150,7 @@ ninja package
 ##### Testing
 
 ```bash
-apt install ./Template-SDK_1.2.3.deb
+apt install ./Template-SDK_1.2.3.4.deb
 
 export PATH=/opt/by-EAjks.Com/Template-SDK/bin${PATH:+:${PATH}}
 
@@ -169,9 +169,9 @@ docker build \
     --build-arg DEVELOPMENT_IMAGE_TAG=1.0.0-sdk-core-ubuntu-24.04 \
     --build-arg RUNTIME_IMAGE_NAME=cpp-cuda \
     --build-arg RUNTIME_IMAGE_TAG=1.0.0-runtime-core-ubuntu-24.04 \
-    --build-arg TEMPLATE_SDK_VERSION=1.2.3 \
+    --build-arg TEMPLATE_SDK_VERSION=1.2.3.4 \
     --file DevOps/Docker/Template-SDK/Dockerfile \
-    --tag ghcr.io/by-eajks-com/template-sdk:v1.2.3 \
+    --tag ghcr.io/by-eajks-com/template-sdk:v1.2.3.4 \
     --tag ghcr.io/by-eajks-com/template-sdk:latest \
     .
 ```
@@ -185,9 +185,9 @@ docker build `
     --build-arg DEVELOPMENT_IMAGE_TAG=1.0.0-sdk-core-ubuntu-24.04 `
     --build-arg RUNTIME_IMAGE_NAME=cpp-cuda `
     --build-arg RUNTIME_IMAGE_TAG=1.0.0-runtime-core-ubuntu-24.04 `
-    --build-arg TEMPLATE_SDK_VERSION=1.2.3 `
+    --build-arg TEMPLATE_SDK_VERSION=1.2.3.4 `
     --file DevOps/Docker/Template-SDK/Dockerfile `
-    --tag ghcr.io/by-eajks-com/template-sdk:v1.2.3 `
+    --tag ghcr.io/by-eajks-com/template-sdk:v1.2.3.4 `
     --tag ghcr.io/by-eajks-com/template-sdk:latest `
     .
 ```

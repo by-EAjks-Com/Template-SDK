@@ -16,12 +16,12 @@
 
 #include "byEAjksCom/Libraries/Template/GPU/ObjectFactory.h"
 
-// Additional Template-SDK Headers
+// First-Party Headers
 #include "byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h"
 #include "byEAjksCom/Libraries/Template/GPU/DefaultObject.h"
 #include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
 
-// Dependency Headers
+// Third-Party Headers
 #include <spdlog/spdlog.h>
 
 // Standard C++/STL Headers

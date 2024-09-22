@@ -16,9 +16,9 @@
 
 #pragma once
 
-// Additional Template-SDK Headers
+// First-Party Headers
 
-// Dependency Headers
+// Third-Party Headers
 #include <pybind11/pybind11.h>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>

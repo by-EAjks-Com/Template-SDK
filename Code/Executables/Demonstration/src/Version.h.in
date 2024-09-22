@@ -16,6 +16,11 @@
 
 #pragma once
 
+// First-Party Headers
+#include "PrecompiledHeaders.h"
+
+// Third-Party Headers
+
 // Standard C++/STL Headers
 #include <string>
 

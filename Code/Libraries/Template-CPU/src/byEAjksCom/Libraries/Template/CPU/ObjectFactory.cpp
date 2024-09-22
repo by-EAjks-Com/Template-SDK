@@ -16,12 +16,12 @@
 
 #include "byEAjksCom/Libraries/Template/CPU/ObjectFactory.h"
 
-// Additional Template-SDK Headers
+// First-Party Headers
 #include "byEAjksCom/Libraries/Template/CPU/PrecompiledHeaders.h"
 #include "byEAjksCom/Libraries/Template/CPU/DefaultObject.h"
 #include "byEAjksCom/Libraries/Template/CPU/ObjectIF.h"
 
-// Dependency Headers
+// Third-Party Headers
 #include <spdlog/spdlog.h>
 
 // Standard C++/STL Headers

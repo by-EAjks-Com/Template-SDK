@@ -33,7 +33,7 @@ C:\Tools\cmake-3.30.2-windows-x86_64\bin\cmake.exe ^
     -D CMAKE_LINKER_TYPE=DEFAULT ^
     -D PYBIND11_FINDPYTHON=ON ^
     -D CMAKE_TOOLCHAIN_FILE=C:\Tools\VCPKG\scripts\buildsystems\vcpkg.cmake ^
-    -D TEMPLATE_SDK_VERSION=1.2.3 ^
+    -D TEMPLATE_SDK_VERSION=1.2.3.4 ^
     -D USE_PRECOMPILED_HEADERS=ON ^
     -D BUILD_API_DOCUMENTATION=OFF ^
     ..\..\..\Code

@@ -16,9 +16,9 @@
 
 #pragma once
 
-// Additional Template-SDK Headers
+// First-Party Headers
 
-// Dependency Headers
+// Third-Party Headers
 #include <CLI/CLI.hpp>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/basic_file_sink.h>
