@@ -31,7 +31,7 @@ pushd     GeneratePackagesForLinuxUsingGnuCompiler
     -D CMAKE_BUILD_TYPE=Debug \
     -D CMAKE_LINKER_TYPE=DEFAULT \
     -D PYBIND11_FINDPYTHON=ON \
-    -D TEMPLATE_SDK_VERSION=1.2.3 \
+    -D TEMPLATE_SDK_VERSION=1.2.3.4 \
     -D USE_PRECOMPILED_HEADERS=OFF \
     -D BUILD_API_DOCUMENTATION=ON \
     ../../../Code

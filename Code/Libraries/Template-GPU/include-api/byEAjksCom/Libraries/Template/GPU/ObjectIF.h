@@ -16,11 +16,11 @@
 
 #pragma once
 
-// Additional Template-SDK Headers
+// First-Party Headers
 #include "byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h"
 #include "byEAjksCom/Libraries/Template/GPU/PreprocessorMacros.h"
 
-// Dependency Headers
+// Third-Party Headers
 
 // Standard C++/STL Headers
 

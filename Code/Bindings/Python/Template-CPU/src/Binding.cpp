@@ -14,13 +14,13 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-// Additional Template-SDK Headers
+// First-Party Headers
 #include "PrecompiledHeaders.h"
 #include "byEAjksCom/Libraries/Template/CPU/Version.h"
 #include "byEAjksCom/Libraries/Template/CPU/ObjectFactory.h"
 #include "byEAjksCom/Libraries/Template/CPU/ObjectIF.h"
 
-// Dependency Headers
+// Third-Party Headers
 #include <pybind11/pybind11.h>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>

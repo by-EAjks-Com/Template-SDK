@@ -16,9 +16,9 @@
 
 #pragma once
 
-// Additional Template-SDK Headers
+// First-Party Headers
 
-// Dependency Headers
+// Third-Party Headers
 
 // Standard C++/STL Headers
 #include <string>

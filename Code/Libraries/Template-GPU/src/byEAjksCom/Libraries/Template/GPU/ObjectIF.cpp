@@ -16,10 +16,10 @@
 
 #include "byEAjksCom/Libraries/Template/GPU/ObjectIF.h"
 
-// Additional Template-SDK Headers
+// First-Party Headers
 #include "byEAjksCom/Libraries/Template/GPU/PrecompiledHeaders.h"
 
-// Dependency Headers
+// Third-Party Headers
 
 // Standard C++/STL Headers
 
