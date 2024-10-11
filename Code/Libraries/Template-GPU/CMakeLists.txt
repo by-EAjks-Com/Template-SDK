@@ -16,6 +16,8 @@
 
 PROJECT(Template-GPU VERSION ${Template-SDK_VERSION} LANGUAGES CXX CUDA)
 
+FIND_PACKAGE(CUDAToolkit REQUIRED)
+
 CONFIGURE_FILE(
     ${PROJECT_SOURCE_DIR}/include-api/byEAjksCom/Libraries/Template/GPU/Version.h.in
     ${PROJECT_BINARY_DIR}/include-api/byEAjksCom/Libraries/Template/GPU/Version.h
@@ -65,6 +67,9 @@ TARGET_COMPILE_OPTIONS(
 TARGET_LINK_LIBRARIES(
     Template-GPUStaticLibrary
         PRIVATE   $<$<CXX_COMPILER_ID:GNU>:pthread>
+        PRIVATE   CUDA::cudart_static
+        PRIVATE   CUDA::cublas_static
+        PRIVATE   CUDA::cusparse_static
         PRIVATE   spdlog::spdlog_header_only)
 
 SET_TARGET_PROPERTIES(
@@ -121,6 +126,9 @@ TARGET_COMPILE_OPTIONS(
 TARGET_LINK_LIBRARIES(
     Template-GPUSharedLibrary
         PRIVATE   $<$<CXX_COMPILER_ID:GNU>:pthread>
+        PRIVATE   CUDA::cudart
+        PRIVATE   CUDA::cublas
+        PRIVATE   CUDA::cusparse
         PRIVATE   spdlog::spdlog_header_only)
 
 SET_TARGET_PROPERTIES(
